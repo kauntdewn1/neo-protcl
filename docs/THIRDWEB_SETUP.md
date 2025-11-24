@@ -1,0 +1,92 @@
+# 🔐 Configuração Thirdweb - Allowed Domains
+
+## 📋 O que são Allowed Domains?
+
+"Allowed Domains" é uma configuração de segurança do Thirdweb que restringe quais domínios podem usar seu Client ID. Isso protege seu Client ID de ser usado em sites não autorizados.
+
+## 🛠️ Configuração
+
+### Para Desenvolvimento Local
+
+Adicione os seguintes domínios:
+
+```
+localhost
+localhost:5173
+127.0.0.1
+127.0.0.1:5173
+```
+
+**Nota**: O Vite usa a porta `5173` por padrão. Se você mudar a porta, adicione também `localhost:SUA_PORTA`.
+
+### Para Produção
+
+Adicione o domínio onde seu app será hospedado:
+
+#### Se usar Vercel:
+```
+neo-landing.vercel.app
+neo-landing-*.vercel.app
+*.vercel.app
+```
+
+**Nota**: A Vercel gera automaticamente o domínio `neo-landing.vercel.app` quando você conecta o repositório [melloneoprotocol-web/neo-landing](https://github.com/melloneoprotocol-web/neo-landing.git). Você também pode usar `*.vercel.app` para cobrir todos os previews e branches.
+
+#### Se usar Netlify:
+```
+seu-app.netlify.app
+seu-app--*.netlify.app
+```
+
+#### Se usar domínio customizado:
+```
+seudominio.com
+www.seudominio.com
+```
+
+#### Se usar ENS Domain (neoprotocol.eth):
+```
+neoprotocol.eth
+```
+
+**Importante**: Se o ENS resolver para um domínio específico (ex: `neoprotocol.eth` → `app.neoprotocol.com`), adicione o domínio resolvido também.
+
+## 📝 Exemplo Completo
+
+Para um setup completo (desenvolvimento + produção Vercel), adicione:
+
+```
+localhost
+localhost:5173
+127.0.0.1
+127.0.0.1:5173
+neo-landing.vercel.app
+*.vercel.app
+neoprotocol.eth
+```
+
+**Repositório**: [melloneoprotocol-web/neo-landing](https://github.com/melloneoprotocol-web/neo-landing.git)
+
+**Domínio Vercel gerado automaticamente**: `neo-landing.vercel.app`
+
+## ⚠️ Dicas Importantes
+
+1. **Use wildcards quando possível**: `*.vercel.app` cobre todos os previews do Vercel
+2. **Não use `*` sozinho**: Isso permite qualquer domínio (inseguro)
+3. **Adicione todos os ambientes**: Desenvolvimento, staging e produção
+4. **Teste após adicionar**: Recarregue o app e verifique se funciona
+
+## 🔍 Como Verificar
+
+Após configurar, teste:
+
+1. Abra o app no domínio configurado
+2. Abra o Console do navegador (F12)
+3. Verifique se não há erros relacionados ao Thirdweb
+4. Se houver erro de "domain not allowed", adicione o domínio na lista
+
+## 📚 Referência
+
+- [Thirdweb Dashboard](https://thirdweb.com/dashboard)
+- [Thirdweb Documentation](https://portal.thirdweb.com)
+

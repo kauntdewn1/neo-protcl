@@ -1,0 +1,8 @@
+# Arquivos ignorados no deploy Vercel
+node_modules
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+
