@@ -25,12 +25,12 @@ Adicione o domínio onde seu app será hospedado:
 
 #### Se usar Vercel:
 ```
-neo-landing.vercel.app
-neo-landing-*.vercel.app
+neo-protcl.vercel.app
+neo-protcl-*.vercel.app
 *.vercel.app
 ```
 
-**Nota**: A Vercel gera automaticamente o domínio `neo-landing.vercel.app` quando você conecta o repositório [melloneoprotocol-web/neo-landing](https://github.com/melloneoprotocol-web/neo-landing.git). Você também pode usar `*.vercel.app` para cobrir todos os previews e branches.
+**Nota**: A Vercel gera automaticamente o domínio `neo-protcl.vercel.app` ou `neo-protcl-kauntdewn1.vercel.app` quando você conecta o repositório [kauntdewn1/neo-protcl](https://github.com/kauntdewn1/neo-protcl.git). Você também pode usar `*.vercel.app` para cobrir todos os previews e branches.
 
 #### Se usar Netlify:
 ```
@@ -60,14 +60,14 @@ localhost
 localhost:5173
 127.0.0.1
 127.0.0.1:5173
-neo-landing.vercel.app
+neo-protcl.vercel.app
 *.vercel.app
 neoprotocol.eth
 ```
 
-**Repositório**: [melloneoprotocol-web/neo-landing](https://github.com/melloneoprotocol-web/neo-landing.git)
+**Repositório**: [kauntdewn1/neo-protcl](https://github.com/kauntdewn1/neo-protcl.git)
 
-**Domínio Vercel gerado automaticamente**: `neo-landing.vercel.app`
+**Domínio Vercel gerado automaticamente**: `neo-protcl.vercel.app` ou `neo-protcl-kauntdewn1.vercel.app`
 
 ## ⚠️ Dicas Importantes
 

@@ -56,7 +56,7 @@ O `VITE_THIRDWEB_CLIENT_ID` é **OPCIONAL** (só necessário se usar Thirdweb pa
 5. **Configure "Allowed Domains"** com:
    - `localhost`
    - `localhost:5173`
-   - `neo-landing.vercel.app` (domínio gerado automaticamente pela Vercel)
+   - `neo-protcl.vercel.app` (domínio gerado automaticamente pela Vercel)
    - `*.vercel.app` (cobre todos os previews e branches)
    - `neoprotocol.eth` (se usar ENS)
 6. Cole o Client ID no arquivo `.env`:
@@ -223,12 +223,12 @@ Os arquivos otimizados estarão em `dist/`
 Pronto para deploy em:
 
 - **Vercel**: 
-  - Conecte o repositório: [melloneoprotocol-web/neo-landing](https://github.com/melloneoprotocol-web/neo-landing.git)
-  - Domínio gerado automaticamente: `neo-landing.vercel.app`
+  - Conecte o repositório: [kauntdewn1/neo-protcl](https://github.com/kauntdewn1/neo-protcl.git)
+  - Domínio gerado automaticamente: `neo-protcl.vercel.app` ou `neo-protcl-kauntdewn1.vercel.app`
   - Ou use: `vercel --prod`
 - **Netlify**: Arraste a pasta `dist/` ou conecte o repositório
 
-**Importante**: Após fazer deploy na Vercel, adicione o domínio `neo-landing.vercel.app` e `*.vercel.app` nas "Allowed Domains" do Thirdweb (se estiver usando).
+**Importante**: Após fazer deploy na Vercel, adicione o domínio `neo-protcl.vercel.app` e `*.vercel.app` nas "Allowed Domains" do Thirdweb (se estiver usando).
 
 ## 📝 Assets Necessários
 
