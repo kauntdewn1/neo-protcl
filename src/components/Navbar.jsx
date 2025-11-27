@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { soundManager } from '../utils/sounds';
+import WalletIconButton from './WalletConnect/WalletIconButton';
 
 export default function Navbar() {
   return (
@@ -8,15 +9,14 @@ export default function Navbar() {
         <Link 
           to="/" 
           onClick={() => soundManager.playClick()}
-          className="text-xl font-black tracking-tighter cyber-glow graffiti-text"
-          style={{
-            textShadow: '0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.4)',
-            color: '#00ffff',
-            fontFamily: "'Courier New', monospace",
-            letterSpacing: '0.05em'
-          }}
+          className="flex items-center"
         >
-          NΞØ
+          <img
+            src="https://gateway.lighthouse.storage/ipfs/bafkreifm3hzdhem47tfzzqxm4274t3rqkzrgsa2zi2bc72nzjecxaixsxm"
+            alt="NΞØ Protocol"
+            className="h-8 md:h-10 w-auto drop-shadow-[0_0_20px_rgba(0,255,255,0.5)]"
+            loading="eager"
+          />
         </Link>
         <div className="flex items-center gap-4 font-mono text-xs">
           <div className="hidden md:flex items-center gap-3">
@@ -37,11 +37,14 @@ export default function Navbar() {
               &gt; MANIFESTO
             </Link>
           </div>
-          <div className="text-green-400/60 font-mono text-xs flex items-center gap-1.5">
-            <span className="text-green-500" style={{ fontSize: '16px', lineHeight: '1', fontFamily: 'monospace' }}>
-              {'\u23DA'}
-            </span>
-            <span>STATUS: SYNCED</span>
+          <div className="flex items-center gap-3">
+            <div className="text-green-400/60 font-mono text-xs flex items-center gap-1.5">
+              <span className="text-green-500" style={{ fontSize: '16px', lineHeight: '1', fontFamily: 'monospace' }}>
+                {'\u23DA'}
+              </span>
+              <span>STATUS: SYNCED</span>
+            </div>
+            <WalletIconButton />
           </div>
         </div>
       </div>

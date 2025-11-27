@@ -5,10 +5,10 @@ export default function BottomNavigation() {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', symbol: 'HOME', label: 'HOME', color: 'cyan' },
-    { path: '/nos', symbol: 'NODES', label: 'NODES', color: 'blue' },
-    { path: '/manifesto', symbol: 'DOCS', label: 'DOCS', color: 'purple' },
-    { path: '/mcp', symbol: 'MCP', label: 'MCP', color: 'green' },
+    { path: '/', symbol: 'HOME', label: 'HOME', color: 'cyan', clickable: true },
+    { path: '/nos', symbol: 'NODES', label: 'NODES', color: 'blue', clickable: true },
+    { path: '/manifesto', symbol: 'DOCS', label: 'DOCS', color: 'purple', clickable: true },
+    { path: null, symbol: '$NEEO', label: '$NEEO', color: 'green', clickable: false }, // Não clicável
   ];
 
   const getColorStyles = (color, isActive) => {
@@ -50,47 +50,59 @@ export default function BottomNavigation() {
          style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       <div className="flex items-center px-0 py-2">
         {navItems.map((item, index) => {
-          const isActive = location.pathname === item.path;
+          const isActive = item.clickable && location.pathname === item.path;
           const colorStyles = getColorStyles(item.color, isActive);
           const style = isActive ? colorStyles.active : colorStyles.inactive;
           const isLast = index === navItems.length - 1;
           
+          const content = (
+            <div className={`relative flex flex-col items-center justify-center py-2 px-2 flex-1 transition-all font-mono border-r ${style.text} ${
+              !item.clickable ? 'opacity-50 cursor-default' : isActive ? 'scale-105' : 'active:text-gray-400'
+            }`}
+            style={{
+              textShadow: style.shadow,
+              borderRightColor: isLast ? 'transparent' : 'rgba(107, 114, 128, 0.3)',
+              borderRightWidth: isLast ? '0' : '1px',
+              pointerEvents: item.clickable ? 'auto' : 'none'
+            }}
+            >
+              <span className="text-[10px] font-black leading-tight tracking-wider mb-0.5">
+                {item.symbol}
+              </span>
+              <span className="text-[8px] font-medium leading-tight tracking-wide opacity-80">
+                {item.label}
+              </span>
+              {isActive && (
+                <div 
+                  className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 w-10 h-0.5 rounded-full"
+                  style={{
+                    background: colorStyles.gradient,
+                    boxShadow: colorStyles.glow
+                  }}
+                ></div>
+              )}
+            </div>
+          );
+          
           return (
-            <div key={item.path} className="flex items-center flex-1">
-              <Link
-                to={item.path}
-                onClick={() => {
-                  if (!isActive) {
-                    soundManager.playNavigate();
-                  } else {
-                    soundManager.playClick();
-                  }
-                }}
-                className={`relative flex flex-col items-center justify-center py-2 px-2 flex-1 transition-all touch-manipulation font-mono border-r ${style.text} ${
-                  isActive ? 'scale-105' : 'active:text-gray-400'
-                }`}
-                style={{
-                  textShadow: style.shadow,
-                  borderRightColor: isLast ? 'transparent' : 'rgba(107, 114, 128, 0.3)',
-                  borderRightWidth: isLast ? '0' : '1px'
-                }}
-              >
-                <span className="text-[10px] font-black leading-tight tracking-wider mb-0.5">
-                  {item.symbol}
-                </span>
-                <span className="text-[8px] font-medium leading-tight tracking-wide opacity-80">
-                  {item.label}
-                </span>
-                {isActive && (
-                  <div 
-                    className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 w-10 h-0.5 rounded-full"
-                    style={{
-                      background: colorStyles.gradient,
-                      boxShadow: colorStyles.glow
-                    }}
-                  ></div>
-                )}
-              </Link>
+            <div key={item.path || item.symbol} className="flex items-center flex-1">
+              {item.clickable ? (
+                <Link
+                  to={item.path}
+                  onClick={() => {
+                    if (!isActive) {
+                      soundManager.playNavigate();
+                    } else {
+                      soundManager.playClick();
+                    }
+                  }}
+                  className="w-full"
+                >
+                  {content}
+                </Link>
+              ) : (
+                content
+              )}
             </div>
           );
         })}

@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import BottomNavigation from '../../components/BottomNavigation';
-import ConnectButton from '../../components/WalletConnect/ConnectButton';
 import { soundManager } from '../../utils/sounds';
 
 const phrases = [
@@ -99,7 +98,7 @@ export default function NeoProtocol() {
   return (
     <div 
       ref={containerRef}
-      className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-gray-100 overflow-x-hidden pb-16 safe-area-inset relative scanline"
+      className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-gray-100 overflow-x-hidden pb-16 safe-area-inset relative scanline"
       style={{ paddingBottom: `calc(60px + env(safe-area-inset-bottom))` }}
     >
       {/* Scanline overlay effect */}
@@ -150,53 +149,24 @@ export default function NeoProtocol() {
                 />
               </div>
               
-              {/* Logo NΞØ abaixo da imagem */}
-              <div className="mb-4">
-                <img
-                  src="https://gateway.lighthouse.storage/ipfs/bafkreifm3hzdhem47tfzzqxm4274t3rqkzrgsa2zi2bc72nzjecxaixsxm"
-                  alt="NΞØ Protocol"
-                  className="h-12 md:h-16 w-auto mx-auto drop-shadow-[0_0_20px_rgba(0,255,255,0.5)]"
-                  loading="eager"
-                />
-              </div>
               
               <div className="h-1 w-24 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 mx-auto mb-4 rounded-full cyber-glow"
                    style={{ boxShadow: '0 0 10px rgba(0, 255, 255, 0.5)' }}></div>
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-black mb-3 text-center cyber-glow"
-                style={{
-                  textShadow: '0 0 10px rgba(59, 130, 246, 0.6), 0 0 20px rgba(59, 130, 246, 0.4)',
-                  color: '#3b82f6',
-                  fontFamily: "'Courier New', monospace",
-                  letterSpacing: '0.1em'
-                }}>
-              PROTOCOL
-            </h2>
-
-            <p className="text-sm md:text-base mb-6 opacity-90 max-w-md mx-auto leading-relaxed font-mono text-center px-4"
-               style={{ color: '#d1d5db' }}>
-              Você não precisa ser mais uma conta no sistema.
-              <br />
-              Pode ser um <span className="text-cyan-300 font-bold cyber-glow">nó ativo</span> na revolução digital.
+            <p className="text-sm md:text-base mb-6 opacity-90 max-w-2xl mx-auto leading-relaxed font-mono px-4"
+               style={{ 
+                 color: '#d1d5db',
+                 textAlign: 'justify',
+                 textAlignLast: 'left',
+                 hyphens: 'auto',
+                 wordSpacing: '0.05em'
+               }}>
+              Protocolo NΞØ é o mais recente movimento a emergir do submundo digital com a proposta de devolver aos indivíduos o controle sobre sua identidade, sua presença digital e sua capacidade de governança.
+              <br /><br />
+              Lançado como uma rede neural, o projeto combina blockchain, inteligência artificial, gamificação e arquitetura simbólica para formar um ecossistema autônomo, onde cada participante atua como um <span className="text-cyan-300 font-bold cyber-glow">nó consciente de execução</span>.
             </p>
 
-            <div className="flex flex-col gap-3 justify-center mb-6 px-4">
-              <div className="w-full max-w-xs mx-auto">
-                <ConnectButton />
-              </div>
-              <Link
-                to="/nos"
-                onClick={() => soundManager.playNavigate()}
-                className="block w-full max-w-xs mx-auto text-center py-3 px-6 border-2 border-cyan-400/50 bg-gray-800/50 backdrop-blur-sm font-mono text-sm text-cyan-300 hover:border-cyan-400 hover:bg-gray-800/70 transition-all cyber-glow"
-                style={{ 
-                  textShadow: '0 0 5px rgba(0, 255, 255, 0.5)',
-                  boxShadow: '0 0 10px rgba(0, 255, 255, 0.2)'
-                }}
-              >
-                &gt; EXPLORAR NÓS
-              </Link>
-            </div>
           </div>
         </header>
 
@@ -241,22 +211,52 @@ export default function NeoProtocol() {
           </div>
         </section>
 
-        {/* Status Section - Terminal Output Style */}
+        {/* Status Section - Terminal ASCII Style */}
         <section id="comunidade" className="container mx-auto px-4 py-4">
-          <div className="bg-gray-700/40 backdrop-blur-sm rounded-lg shadow-2xl border border-gray-600/50 p-6 paper-texture">
-            <div className="mb-4 font-mono text-xs text-cyan-400/60">
-              <span className="text-green-400">$</span> <span className="text-cyan-400">status</span>
+          <div className="bg-black/80 backdrop-blur-sm border-2 border-green-500/50 p-4 font-mono text-xs"
+               style={{
+                 boxShadow: '0 0 20px rgba(34, 197, 94, 0.3), inset 0 0 20px rgba(34, 197, 94, 0.05)',
+                 fontFamily: "'Courier New', 'Courier', monospace"
+               }}>
+            {/* Terminal Header */}
+            <div className="mb-3 text-green-400 border-b border-green-500/30 pb-2">
+              <span className="text-green-500">┌─</span>
+              <span className="text-green-400">[</span>
+              <span className="text-cyan-400">neo-protocol@system</span>
+              <span className="text-green-400">]</span>
+              <span className="text-green-500">─┐</span>
             </div>
             
-            <div className="space-y-2 font-mono text-sm">
-              <div className="flex items-center gap-2 text-green-400">
-                <span className="text-green-500">●</span>
-                <span>Sistema operacional</span>
+            {/* Terminal Prompt */}
+            <div className="mb-3 text-green-400">
+              <span className="text-green-500">└─</span>
+              <span className="text-green-400">$</span>
+              <span className="text-cyan-400 ml-1">status</span>
+            </div>
+            
+            {/* Terminal Output */}
+            <div className="space-y-1 text-green-300/90 ml-2">
+              <div className="flex items-start gap-2">
+                <span className="text-green-500">│</span>
+                <div className="flex-1">
+                  <div className="text-green-400">
+                    <span className="text-green-500">[</span>
+                    <span className="text-green-300">OK</span>
+                    <span className="text-green-500">]</span>
+                    <span className="ml-2">Sistema operacional</span>
+                  </div>
+                  <div className="text-cyan-400 ml-4 mt-1">
+                    <span className="text-cyan-500">└─</span>
+                    <span className="ml-1 italic opacity-90">{currentPhrase}</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-cyan-400 ml-4">
-                <span className="text-cyan-500">→</span>
-                <span className="italic opacity-80">{currentPhrase}</span>
-              </div>
+            </div>
+            
+            {/* Terminal Footer */}
+            <div className="mt-3 pt-2 border-t border-green-500/30 text-green-500/50 text-[10px]">
+              <span>└─</span>
+              <span className="ml-1">Press 'q' to quit</span>
             </div>
           </div>
         </section>
