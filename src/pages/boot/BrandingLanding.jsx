@@ -1,48 +1,49 @@
 import { useEffect, useRef, useState } from 'react';
-import { soundManager } from '../../utils/sounds';
 
 /**
  * NΞØ HUB — INTAKE PROTOCOL
- * Página de landing conectada ao neoprotocol.eth via ENS/IPFS
+ * Landing page minimalista para IPFS/ENS
  */
 export default function BrandingLanding() {
   const glowRef = useRef(null);
-  const [glowPos, setGlowPos] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
+  const mousePosRef = useRef({ x: 0, y: 0 });
+  const glowPosRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    soundManager.playClick();
-  }, []);
+    // Detectar se é desktop e redirecionar
+    const isDesktop = window.innerWidth > 768 || (!('ontouchstart' in window) && navigator.maxTouchPoints === 0);
+    
+    if (isDesktop) {
+      // Redirecionar para página alternativa com links randômicos
+      window.location.href = './desktop-redirect.html';
+      return;
+    }
 
-  // Mouse glow effect animation
-  useEffect(() => {
-    const mousePosRef = { x: 0, y: 0 };
-    const glowPosRef = { x: 0, y: 0 };
-
+    setIsLoaded(true);
+    
     const handleMouseMove = (e) => {
-      mousePosRef.x = e.clientX;
-      mousePosRef.y = e.clientY;
+      mousePosRef.current.x = e.clientX;
+      mousePosRef.current.y = e.clientY;
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
 
     const animate = () => {
-      glowPosRef.x += (mousePosRef.x - glowPosRef.x) * 0.15;
-      glowPosRef.y += (mousePosRef.y - glowPosRef.y) * 0.15;
+      glowPosRef.current.x += (mousePosRef.current.x - glowPosRef.current.x) * 0.15;
+      glowPosRef.current.y += (mousePosRef.current.y - glowPosRef.current.y) * 0.15;
       
-      setGlowPos({ x: glowPosRef.x, y: glowPosRef.y });
+      if (glowRef.current) {
+        glowRef.current.style.left = glowPosRef.current.x + 'px';
+        glowRef.current.style.top = glowPosRef.current.y + 'px';
+      }
+      
       requestAnimationFrame(animate);
     };
 
     const animationId = requestAnimationFrame(animate);
 
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationId);
-    };
-  }, []);
-
-  // Smooth scroll for internal links
-  useEffect(() => {
+    // Smooth scroll for anchor links
     const handleClick = (e) => {
       const anchor = e.target.closest('a[href^="#"]');
       if (anchor) {
@@ -56,7 +57,12 @@ export default function BrandingLanding() {
     };
 
     document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationId);
+      document.removeEventListener('click', handleClick);
+    };
   }, []);
 
   return (
@@ -72,46 +78,56 @@ export default function BrandingLanding() {
           width: 100%;
           height: 100%;
           overflow-x: hidden;
+          overflow-y: hidden;
         }
 
         body {
-          background-color: #0a0a0a;
-          color: #f0f0f0;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-          letter-spacing: 0.5px;
+          background-color: #ffffff;
+          color: #000000;
+          font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+          font-weight: 400;
+          letter-spacing: -0.01em;
           overflow: hidden;
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Grid background */
+        .web-app-badge {
+          position: fixed;
+          top: 18px;
+          right: 18px;
+          z-index: 100;
+          font-size: 0.75rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #000000;
+          font-weight: 400;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .web-app-badge:hover {
+          opacity: 0.7;
+        }
+
         .grid-background {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
-          height: 100%;
+          height: 100vh;
           pointer-events: none;
           opacity: 0.05;
           background-image: 
-            linear-gradient(0deg, #00cfff 1px, transparent 1px),
-            linear-gradient(90deg, #00cfff 1px, transparent 1px);
-          background-size: 50px 50px;
+            linear-gradient(0deg, #e0e0e0 1px, transparent 1px),
+            linear-gradient(90deg, #e0e0e0 1px, transparent 1px);
+          background-size: 48px 48px;
           z-index: 0;
         }
 
-        /* Mouse glow effect */
         .glow {
-          position: fixed;
-          width: 400px;
-          height: 400px;
-          background: radial-gradient(circle, #00cfff 0%, transparent 70%);
-          border-radius: 50%;
-          filter: blur(100px);
-          opacity: 0.3;
-          pointer-events: none;
-          mix-blend-mode: screen;
-          z-index: 1;
-          transform: translate(-50%, -50%);
-          transition: all 0.3s ease-out;
+          display: none;
         }
 
         .container {
@@ -123,12 +139,11 @@ export default function BrandingLanding() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding: 2rem;
+          padding: 48px;
           max-width: 1280px;
           margin: 0 auto;
         }
 
-        /* Animations */
         @keyframes fadeInDown {
           from {
             opacity: 0;
@@ -152,52 +167,67 @@ export default function BrandingLanding() {
         }
 
         .accent {
-          animation: fadeInScale 1s ease-out 0s forwards;
-          margin-bottom: 3rem;
+          animation: fadeInScale 300ms linear 0s forwards;
+          margin-bottom: 48px;
         }
 
         .title-section {
-          animation: fadeInDown 1s ease-out 0.1s forwards;
+          animation: fadeInDown 300ms linear 90ms forwards;
           text-align: center;
-          margin-bottom: 2rem;
+          margin-bottom: 24px;
+          padding: 2.5rem 2rem;
+          background: rgba(30, 30, 30, 0.5);
+          border: 1px solid rgba(62, 62, 62, 0.3);
+          border-radius: 16px;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+          backdrop-filter: blur(10px);
+          width: 100%;
+          max-width: 600px;
         }
 
         .message-section {
-          animation: fadeInDown 1s ease-out 0.2s forwards;
+          animation: fadeInDown 300ms linear 160ms forwards;
           max-width: 40rem;
           text-align: center;
-          margin-bottom: 3rem;
+          margin-bottom: 48px;
         }
 
         .buttons-section {
-          animation: fadeInScale 1s ease-out 0.3s forwards;
+          animation: fadeInScale 300ms linear 300ms forwards;
           display: flex;
-          gap: 1rem;
+          gap: 12px;
           flex-wrap: wrap;
           justify-content: center;
         }
 
-        /* Typography */
         .genesis-text {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 0.75rem;
-          margin-bottom: 1.5rem;
+          margin-bottom: 0;
         }
 
         .genesis-label {
           font-size: 0.75rem;
           letter-spacing: 0.15em;
           text-transform: uppercase;
-          color: rgba(0, 207, 255, 0.6);
-          font-weight: 600;
+          color: #000000;
+          font-weight: 500;
         }
 
-        .brain-icon {
-          width: 1.5rem;
-          height: 1.5rem;
-          color: #00cfff;
+        .particle {
+          font-size: 1.5rem;
+          color: #000000;
+          line-height: 1;
+        }
+
+        .neo-logo {
+          width: clamp(200px, 30vw, 400px);
+          height: auto;
+          margin-bottom: 30px;
+          opacity: 0;
+          animation: fadeInScale 300ms linear 100ms forwards;
         }
 
         h1 {
@@ -206,19 +236,20 @@ export default function BrandingLanding() {
           letter-spacing: -0.02em;
           margin-bottom: 1rem;
           line-height: 1.1;
+          color: #000000;
         }
 
         h2 {
           font-size: clamp(1.25rem, 4vw, 2rem);
           font-weight: 300;
-          color: #00cfff;
+          color: #000000;
           letter-spacing: 0.15em;
           text-transform: uppercase;
         }
 
         .message-primary {
           font-size: clamp(1.125rem, 3vw, 1.25rem);
-          color: rgba(240, 240, 240, 0.8);
+          color: #000000;
           line-height: 1.6;
           margin-bottom: 1rem;
           font-weight: 300;
@@ -226,12 +257,11 @@ export default function BrandingLanding() {
 
         .message-secondary {
           font-size: clamp(0.875rem, 2vw, 1rem);
-          color: #00ff99;
+          color: #000000;
           letter-spacing: 0.1em;
-          font-weight: 500;
+          font-weight: 400;
         }
 
-        /* Buttons */
         .btn {
           display: inline-flex;
           align-items: center;
@@ -239,59 +269,56 @@ export default function BrandingLanding() {
           gap: 0.5rem;
           padding: 0.75rem 2rem;
           border-radius: 9999px;
-          font-weight: 600;
+          font-weight: 500;
           text-decoration: none;
           cursor: pointer;
           border: none;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           font-size: 1rem;
           white-space: nowrap;
+          letter-spacing: -0.01em;
         }
 
         .btn-primary {
-          background-color: #00cfff;
-          color: #0a0a0a;
-          box-shadow: 0 0 20px rgba(0, 207, 255, 0.4);
+          background-color: #0B0D10;
+          border: 1px solid #1A9AF7;
+          color: #1A9AF7;
         }
 
         .btn-primary:hover {
-          transform: scale(1.05);
-          box-shadow: 0 0 30px rgba(0, 207, 255, 0.6);
+          filter: saturate(115%) blur(0.2px);
+          border-color: #34E1FF;
+          color: #34E1FF;
         }
 
         .btn-primary:active {
-          transform: scale(0.95);
+          filter: saturate(90%);
         }
 
         .btn-secondary {
-          border: 1px solid rgba(0, 207, 255, 0.4);
-          color: #00cfff;
+          border: 1px dashed #7B5DFF;
+          color: #7B5DFF;
           background-color: transparent;
         }
 
         .btn-secondary:hover {
-          border-color: #00cfff;
-          box-shadow: 0 0 20px rgba(0, 207, 255, 0.2);
+          filter: saturate(115%) blur(0.2px);
+          border-color: #1A9AF7;
+          color: #1A9AF7;
         }
 
         .btn-secondary:active {
-          transform: scale(0.98);
+          filter: saturate(90%);
         }
 
-        .icon {
-          width: 1.25rem;
-          height: 1.25rem;
-        }
-
-        /* Footer */
         .footer {
           position: fixed;
           bottom: 0;
           left: 0;
           right: 0;
-          border-top: 1px solid rgba(0, 207, 255, 0.1);
-          background: linear-gradient(to top, #0a0a0a, transparent);
-          padding: 1.5rem;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          background: linear-gradient(to top, #ffffff, transparent);
+          padding: 18px;
           z-index: 10;
         }
 
@@ -316,26 +343,30 @@ export default function BrandingLanding() {
           display: flex;
           gap: 1.5rem;
           font-size: 0.75rem;
-          color: rgba(240, 240, 240, 0.5);
+          color: rgba(0, 0, 0, 0.5);
           letter-spacing: 0.05em;
           text-transform: uppercase;
         }
 
         .footer-links a {
-          color: rgba(240, 240, 240, 0.5);
+          color: #858585;
           text-decoration: none;
           transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-          color: #00cfff;
+          color: #4ec9b0;
         }
 
         .footer-divider {
-          color: rgba(240, 240, 240, 0.3);
+          color: #3e3e3e;
         }
 
-        /* Responsive */
+        .coding-status {
+          color: rgba(0, 0, 0, 0.5);
+          font-weight: 400;
+        }
+
         @media (max-width: 640px) {
           .buttons-section {
             flex-direction: column;
@@ -347,124 +378,65 @@ export default function BrandingLanding() {
           }
 
           .container {
-            padding: 1.5rem;
+            padding: 18px;
             height: auto;
             min-height: 100vh;
-            padding-bottom: 12rem;
+            padding-bottom: 156px;
           }
         }
       `}</style>
 
-      {/* Grid background */}
+      <a href="https://neo-node.vercel.app" target="_blank" rel="noreferrer" className="web-app-badge">WEB APP</a>
+      
       <div className="grid-background"></div>
+      <div ref={glowRef} className="glow"></div>
 
-      {/* Mouse glow effect */}
-      <div 
-        ref={glowRef}
-        className="glow" 
-            style={{
-          left: `${glowPos.x}px`,
-          top: `${glowPos.y}px`
-        }}
-      ></div>
-
-      {/* Main content */}
       <div className="container">
-        {/* Genesis accent */}
         <div className="accent">
           <div className="genesis-text">
-            <svg className="brain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9.59 9a6 6 0 1 1 8.82 8.82A6.5 6.5 0 0 0 12 18.5a6.5 6.5 0 0 1-6.41-9.5"></path>
-            </svg>
-            <span className="genesis-label">Genesis Block</span>
-            <svg className="brain-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9.59 9a6 6 0 1 1 8.82 8.82A6.5 6.5 0 0 0 12 18.5a6.5 6.5 0 0 1-6.41-9.5"></path>
-            </svg>
+            <span className="particle">⟡</span>
+            <span className="genesis-label" style={{ marginRight: '9rem' }}>Genesis Block</span>
           </div>
         </div>
 
-        {/* Title section */}
         <div className="title-section">
-          <h1>NΞØ HUB</h1>
-          <h2>Intake Protocol</h2>
+          <img 
+            src="https://gateway.lighthouse.storage/ipfs/bafkreifm3hzdhem47tfzzqxm4274t3rqkzrgsa2zi2bc72nzjecxaixsxm" 
+            alt="NΞØ" 
+            className="neo-logo"
+          />
+          <h2>Protocolo de Admissão</h2>
         </div>
 
-        {/* Message section */}
         <div className="message-section">
           <p className="message-primary">
-            O primeiro mecanismo oficial para integração sem autorização central.
+            Quando o centro desaparece, a direção vira linguagem.
+          </p>
+          <p className="message-primary">
+            E a linguagem vira rede. E a rede vira organismo.
           </p>
           <p className="message-secondary">
-            Humanos · IAs · Agentes · Contratos · Nós
+            Assim você descobre que é livre.
           </p>
         </div>
 
-        {/* Buttons section */}
-        <div className="buttons-section">
-          <a 
-            href="#protocol" 
-            className="btn btn-primary"
-            onClick={(e) => {
-              e.preventDefault();
-              soundManager.playClick();
-              const target = document.getElementById('protocol');
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-          >
-            <span>📋</span>
-            <span>Ver Especificação</span>
-          </a>
-          <a 
-            href="https://neoprotocol.eth.limo" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="btn btn-secondary"
-            onClick={() => soundManager.playClick()}
-          >
-            <span>Documentação</span>
-            <span>↗</span>
-          </a>
-        </div>
-        </div>
+      </div>
 
-        {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
           <div className="footer-specs">
             <span>v1.0</span>
             <span className="footer-divider">|</span>
-            <span>Status: Ativo</span>
-        </div>
+            <span className="coding-status">øcoding</span>
+          </div>
           <div className="footer-links">
-            <a 
-              href="https://github.com/NEO-PROTOCOL" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={() => soundManager.playClick()}
-            >
-              GitHub
-            </a>
-            <a 
-              href="https://www.instagram.com/neoprotocol.eth/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={() => soundManager.playClick()}
-            >
-              Instagram
-            </a>
-            <a 
-              href="https://neo-protcl.vercel.app/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={() => soundManager.playClick()}
-            >
-              Dapp
-            </a>
-      </div>
-    </div>
+            <a href="https://github.com/NEO-PROTOCOL" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.instagram.com/neoprotocol.eth/" target="_blank" rel="noreferrer">Instagram</a>
+          </div>
+        </div>
       </footer>
+
+      <div id="protocol" style={{ position: 'absolute', top: '100vh', width: '100%', height: '0', visibility: 'hidden' }}></div>
     </>
   );
 }

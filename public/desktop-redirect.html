@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NΞØ Protocol - Desktop Access</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      color: #f0f0f0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #1A9AF7;
+      text-align: center;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .link-card {
+      background: #13161A;
+      border: 1px solid rgba(26, 154, 247, 0.3);
+      padding: 1.5rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .link-card:hover {
+      border-color: #1A9AF7;
+      transform: translateY(-2px);
+    }
+
+    .link-card a {
+      color: #f0f0f0;
+      text-decoration: none;
+      display: block;
+    }
+
+    .link-card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: #34E1FF;
+    }
+
+    .link-card p {
+      font-size: 0.875rem;
+      color: rgba(240, 240, 240, 0.7);
+      line-height: 1.5;
+    }
+
+    .image-card {
+      background: #13161A;
+      border: 1px solid rgba(26, 154, 247, 0.3);
+      padding: 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .image-card:hover {
+      border-color: #1A9AF7;
+      transform: translateY(-2px);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: rgba(240, 240, 240, 0.5);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>NΞØ Protocol</h1>
+    
+    <div class="links-grid" id="linksContainer">
+      <!-- Links serão inseridos via JavaScript -->
+    </div>
+
+    <div class="footer">
+      <p>Acesso desktop - Links aleatórios do protocolo</p>
+    </div>
+  </div>
+
+  <script>
+    // Links principais (mais repetidos)
+    const primaryLinks = [
+      {
+        url: 'https://www.metzdowd.com/pipermail/cryptography/2008-October/014810.html',
+        title: 'Bitcoin P2P e-cash paper',
+        description: 'Satoshi Nakamoto - A purely peer-to-peer version of electronic cash'
+      }
+    ];
+
+    // Imagens
+    const images = [
+      'https://gateway.lighthouse.storage/ipfs/bafkreigpuwjg23onehnn3l52kjk7ta7muo7qshml5wwwfnhry2dqdtrvwy',
+      'https://gateway.lighthouse.storage/ipfs/bafkreig5bzohnkpmhv5xh6bdcaqbilgqylfobbem3qgmr2ngregg7nnxfq'
+    ];
+
+    // Função para embaralhar array
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    // Criar links (repetir o link principal várias vezes + imagens)
+    const linksToShow = [];
+    
+    // Adicionar link principal múltiplas vezes (mais repetido)
+    for (let i = 0; i < 5; i++) {
+      linksToShow.push(...primaryLinks);
+    }
+    
+    // Adicionar imagens
+    images.forEach(img => {
+      linksToShow.push({
+        url: img,
+        title: 'NΞØ Protocol Image',
+        description: '',
+        isImage: true
+      });
+    });
+
+    // Embaralhar
+    const shuffledLinks = shuffleArray(linksToShow);
+
+    // Renderizar
+    const container = document.getElementById('linksContainer');
+    shuffledLinks.forEach(item => {
+      if (item.isImage) {
+        const card = document.createElement('div');
+        card.className = 'image-card';
+        card.onclick = () => window.open(item.url, '_blank');
+        card.innerHTML = `<img src="${item.url}" alt="${item.title}" />`;
+        container.appendChild(card);
+      } else {
+        const card = document.createElement('div');
+        card.className = 'link-card';
+        card.innerHTML = `
+          <a href="${item.url}" target="_blank" rel="noreferrer">
+            <h2>${item.title}</h2>
+            <p>${item.description}</p>
+          </a>
+        `;
+        container.appendChild(card);
+      }
+    });
+  </script>
+</body>
+</html>
+

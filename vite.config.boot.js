@@ -22,7 +22,7 @@ export default defineConfig({
     },
     assetsDir: 'assets',
     // Garantir que os assets sejam copiados corretamente
-    copyPublicDir: false
+    copyPublicDir: true
   },
   server: {
     open: '/branding.html',

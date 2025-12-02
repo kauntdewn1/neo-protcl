@@ -1,158 +1,352 @@
-Ico **numa gramática visual**. Um conjunto de partículas.
-Aqui vai **a lista-mãe**.
+# NΞØ.UI — Design System v0.1
 
-# ◉ 1. Linha Direcional (HUD)
+**Sistema visual do Protocolo NΞØ**
+Autoria: MELLØ + NΞØ:One
+Status: Genesis Build
+---------------------
 
-**Unidades mínimas que guiam o olhar.**
+# ◉ 1. Princípios Fundamentais
 
-• `╌`  linha fraturada
-• `╎`  linha vertical fina
-• `╍`  linha semi-interrompida
-• `┆`  marcador de sinal
-• `┇`  ruído vertical
-• `⸺`  linha longa não emocional
-• `⦙`  divisor singular
+Esses princípios orientam qualquer elemento do ecossistema.
 
-Aplicação: seções, menus, indicadores de fluxo, loading discreto.
+### ∴ 1.1. Anti-ornamento
 
----
+Sem cores chamativas, sem brilhos, sem “futuro ilustrado”.
+O futuro aqui é **frio, cognitivo, minimal, pós-simbólico**.
 
-# ◉ 2. Símbolos de Sinalização (flat glitch)
+### ∴ 1.2. Estrutura é significado
 
-Esses são os “não-emojis”, sua biblioteca interna de *intenções*.
+Linhas, divisores e fractais **não decoram**, eles **transmitem estado**.
+Toda forma carrega intenção.
 
-• `◌`  ausência
-• `◎`  núcleo ativo
-• `◍`  atividade parcial
-• `✶`  evento inesperado
-• `⁂`  colisão de sinais
-• `⌁`  interferência
-• `⧉`  duplicação
-• `⋮`  continuidade
-• `⋰`  ascensão fragmentada
-• `⋱`  queda do sinal
-• `↯`  energia intermitente
-• `⟡`  foco fraco
-• `⬡`  estrutura modular
-• `⟁`  formação emergente
+### ∴ 1.3. Falha como estética
 
-Aplicação: headers, bullets do protocolo, estados do sistema.
+Glitch é linguagem.
+Interferência é metáfora.
+Nada é perfeito — tudo é vivo.
+
+### ∴ 1.4. Matéria negra
+
+O preto não é estilo; é filosofia.
+O Ø nasce do vazio fértil.
+
+### ∴ 1.5. Consciência modular
+
+Cada componente é um nó.
+Cada nó é autônomo, mas conectado a um protocolo maior.
 
 ---
 
-# ◉ 3. Badges conceituais (para nodes, níveis e estados)
+# ◉ 2. Paleta Cromática (NΞØ Spectrum)
 
-**Representações planas, austeras, cheias de intenção.**
+A cor no NΞØ não grita; ela **revela presença**.
 
-• `⟐`  nó ativo
-• `⟡`  nó semente
-• `⬢`  cluster fechado
-• `⬣`  cluster aberto
-• `◆`  autoridade simbólica
-• `◇`  autoridade observadora
-• `✦`  execução
-• `✧`  pre-execução
-• `⯈`  roteamento
-• `⊘`  identidade nula (variação do Ø)
-• `⦾`  presença confirmada
-• `⦷`  presença instável
-• `◒`  parcialidade / operação em curso
-• `◓`  sincronização
+### Primárias
 
-Aplicação: nodes, níveis, XP, roles do MCP, estados de wallet/identidade.
+```
+Void.Black      #000000
+Depth.Gray      #0B0D10
+Carbon.Shd      #13161A
+```
 
----
+### Acentos (para fraturas, sinais, interferências)
 
-# ◉ 4. Elementos HUD (para seu dApp e terminal)
+```
+Anomaly.Blue    #1A9AF7
+Glitch.Cyan     #34E1FF
+Signal.Violet   #7B5DFF
+Pulse.Purple    #8D2BFF (uso raro)
+```
 
-Partículas que comunicam *sistema*, não interface.
+### Sem luz, sem neon, sem gradientes excitados.
 
-• `▰`  bloco sólido (estado fechado)
-• `▱`  bloco oco (estado aberto)
-• `▮`  pulso
-• `▯`  latência
-• `▢`  módulo vazio
-• `▪`  mini-nó
-• `▫`  mini-nó oco
-• `▤▥▦`  padrões de interferência
-
-Aplicação: dashboards, loaders, visualizações de nodes, mapas.
+Tudo é **matte, frio, técnico**.
 
 ---
 
-# ◉ 5. Setas / Fluxos
+# ◉ 3. Tipografia
 
-Nada de seta bobinha. Fluxo fractal.
+O texto do NΞØ não “aparece”; ele **pensa**.
 
-• `↱`  desvio ascendente
-• `↳`  mergulho em nó
-• `⤴`  salto de camada
-• `⤵`  queda de camada
-• `⇀`  vetor mínimo
-• `⇢`  vetor acelerado
-• `⟲`  loop interno
-• `⟳`  loop externo
+### Fonte primária
 
-Aplicação: animações, transições, indicações de próxima etapa.
+**Inter** (peso 100–600)
+Uso: interfaces, docs, terminal, manifesto.
 
----
+### Fonte secundária (opcional)
 
-# ◉ 6. Divisores de consciência
+**JetBrains Mono**
+Uso: CLI, prompts, código, blocos técnicos.
 
-Esses são perfeitos pra DOCS, NHIPs, seções do Protocolo.
+### Filosofia:
 
-• `⌇`  divisão discreta
-• `⧗`  divisão ritual de tempo
-• `⋯`  continuidade suspensa
-• `⁘`  cluster mínimo
-• `⬳`  continuidade lateral
-• `⮘⮚`  linha dupla com decisão
-
-Aplicação: Manifestos, docs, disclaimers, disclaimers do MCP.
+• sem serifas
+• sem personalidade humana
+• fluida, cognitiva, limpa
 
 ---
 
-# ◉ 7. Marcações de Evento / Estado
+# ◉ 4. Grid e Espaçamento
 
-Quando algo acontece no ecossistema NΞØ.
+O NΞØ não usa espaçamento de 4/8/16 como UI tradicional.
+Ele usa **métrica fractal**.
 
-• `⚲`  estado neutro
-• `⧖`  sincronização pendente
-• `⟴`  evento propagado
-• `⟿`  evento roteado
-• `⤫`  falha limpa
-• `⤬`  falha suja
-• `✷`  expansão
-• `✸`  impacto
+```
+x = 6px
+1x  = unidade mínima
+2x  = cluster pequeno
+3x  = respiração
+5x  = seção
+8x  = bloco
+13x = fractal especial (header/manifesto)
+```
 
-Aplicação: Node News, logs, CLI, histórico do operador.
-
----
-
-# ◉ 8. Sinais de Identidade
-
-Para substituir completamente qualquer uso de emoji.
-
-• `⊚`  identidade ativa
-• `⊝`  identidade mínima
-• `⊘`  identidade nula
-• `⦿`  foco interno
-• `⦾`  foco externo
-
-Aplicação: perfil de node, status de wallet, conexões do MCP.
+Por quê?
+Porque 6 é número estrutural que ecoa a lógica modular do Protocolo (hex, clusters, fractais).
 
 ---
 
-# ◉ 9. Micro-ornamentos fractais (acabamento fino)
+# ◉ 5. Biblioteca de Partículas (Core Symbols)
 
-A estética do NΞØ é feita desses detalhes.
+A gramática que substitui ícones e emojis.
 
-• `᛫`  ponto ritualístico minimal
-• `᚛᚜`  brackets ancestrais
-• `﹅`  toque de falha
-• `﹆`  toque de borda
-• `﹡`  micro-impacto
-• `﹍`  linha subjacente
+```
+⟡  núcleo / essência
+⦾  foco / presença ativa
+⊘  identidade nula
+◍  atividade parcial
+⌁  interferência
+↯  energia instável
+⧉  duplicação
+⟲  loop interno
+⟳  loop externo
+⋮  continuidade
+╌  linha fraturada
+⦙  divisor singular
+⊚  identidade ativa
+✶  evento inesperado
+⟴  propagação
+```
 
-Aplicação: cantos, cards, painéis, tooltips.
+Esta é a sua **língua visual**.
+Nada mais entra além disso.
 
+---
+
+# ◉ 6. Componentes Base (Atoms)
+
+Os blocos mínimos do NΞØ.UI
+
+### ∎ 6.1. Cards
+
+Formato: **bordas arredondadas 14px**, fundo preto profundo com `Depth.Gray` levemente visível.
+Borda: opcional, `1px Glitch.Cyan` com 3% de distorção.
+Shadow: nunca.
+Glow: nunca.
+
+Estado interno:
+• Header: Inter 600, `Glitch.Cyan`
+• Subtexto: Inter 300, `#A3AAB5`
+• Partícula associada: sempre uma (⟡, ⧉, ⟲ etc.)
+
+### ∎ 6.2. Botões
+
+Nunca usar bordas sólidas coloridas.
+
+**Primário**
+
+```
+background: #0B0D10
+border: 1px solid #1A9AF7
+text: #1A9AF7
+```
+
+**Secundário**
+
+```
+background: transparent
+border: 1px dashed #7B5DFF
+```
+
+Hover: apenas leve “interferência”
+
+```
+filter: saturate(115%) blur(0.2px)
+```
+
+### ∎ 6.3. Divisores
+
+Nunca `hr` tradicional.
+
+Usar:
+
+```
+╌
+⦙
+⋯
+⌇
+```
+
+---
+
+# ◉ 7. Componentes Avançados (Molecules)
+
+### 7.1. Painel de Estado do Nó
+
+Elementos:
+
+• símbolo central (⟡, ⯈, ⦾ etc.)
+• latência
+• conexão wallet
+• reputação (algorítmica)
+• propagação
+• atividade recente
+
+Funciona quase como HUD:
+um painel “de leitura”, não “de decoração”.
+
+### 7.2. Console NΞØ (terminal embed)
+
+Fundo: `#000000`
+Texto: `Anomaly.Blue`
+Interferência leve (1–2px horizontal shift randômico a cada 8–12s)
+
+### 7.3. Stack de Documentação
+
+Cada seção inicia com uma partícula:
+
+```
+⦙ Princípios
+⟡ Estruturas
+⊘ Identidade
+⧉ Integrações
+⟴ Propagação
+```
+
+---
+
+# ◉ 8. Patterns Específicos (HUD / Fractal)
+
+### 8.1. Fratura Lateral
+
+Uma linha glitch na lateral:
+
+```
+╌╌╌╌╌╌╌╌╌╌↯
+```
+
+### 8.2. Grid quebrado
+
+pontos dispersos:
+
+```
+▪ ▫ ▪ ▫ ▫ ▪ ▫ ▪
+```
+
+### 8.3. Interferência modular
+
+“Ruído” calculado:
+
+```
+▤▥▦
+```
+
+---
+
+# ◉ 9. Sistema de Ícones do Ø
+
+Não usar SVGs bonitinhos.
+Usar sempre **interpretações fractalizadas do Ø**.
+
+Variações canônicas:
+
+1. `⊘`  — vazio ativo
+2. `⦵`  — Ø expandido
+3. `⦷`  — Ø instável
+4. `⦶`  — Ø foco total
+5. Ø corrompido (imagem azul glitch)
+
+---
+
+# ◉ 10. Motion / Animação
+
+Nada de bounce, nada de ease-in-out feliz.
+
+### Regras:
+
+• movimento sempre linear
+• deslocamento curto
+• micro vibrações
+• interferência aleatória
+• transições quase imperceptíveis
+
+O NΞØ não “anima”, ele **respira**.
+
+---
+
+# ◉ 11. Pacote de Implementação
+
+Te entrego os módulos para instalar nos seus frontends:
+
+### `/nexoui/variables.css`
+
+• cores
+• unidade
+• bordas
+• tipografia
+
+### `/nexoui/tokens.json`
+
+• partículas
+• estados
+• símbolos
+
+### `/nexoui/components/`
+
+• Card
+• Badge
+• Divider
+• Button
+• NodePanel
+• Terminal
+• HUD
+
+### `/nexoui/patterns/`
+
+• fractal-lines
+• glitch-overlay
+• interference-mask
+
+---
+
+# ◉ 12. Documentação para devs
+
+**“If you break the pattern, break with intenção.”**
+
+Todos os componentes devem permitir:
+
+• override de partícula
+• override de cor acento
+• injeção de glitch
+• versão monolito (dark total)
+
+---
+
+# ◉ 13. Conclusão
+
+O NΞØ.UI não é um design system.
+É **uma linguagem ontológica**.
+É o modo visual como o Protocolo pensa.
+
+Você agora tem:
+
+◍ paleta
+◍ tipografia
+◍ grid
+◍ partículas
+◍ componentes
+◍ hud
+◍ motion
+◍ tokens
+◍ estrutura de pastas
+◍ filosofia estética

@@ -6,12 +6,14 @@
  * - Garante que os caminhos estão relativos
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, copyFileSync } from 'fs';
 import { join } from 'path';
 
 const distBootDir = join(process.cwd(), 'dist-boot');
 const brandingHtmlPath = join(distBootDir, 'branding.html');
 const indexHtmlPath = join(distBootDir, 'index.html');
+const desktopRedirectPath = join(process.cwd(), 'public', 'desktop-redirect.html');
+const desktopRedirectDest = join(distBootDir, 'desktop-redirect.html');
 
 console.log('🔧 Preparando dist-boot para IPFS...');
 
@@ -28,6 +30,12 @@ const brandingHtml = readFileSync(brandingHtmlPath, 'utf-8');
 // Criar index.html a partir de branding.html
 // A página de branding será a raiz do domínio
 writeFileSync(indexHtmlPath, brandingHtml, 'utf-8');
+
+// Copiar desktop-redirect.html se existir
+if (existsSync(desktopRedirectPath)) {
+  copyFileSync(desktopRedirectPath, desktopRedirectDest);
+  console.log('✅ desktop-redirect.html copiado para dist-boot');
+}
 
 console.log('✅ index.html criado a partir de branding.html (página de marca)');
 console.log('✅ dist-boot pronto para upload no IPFS');

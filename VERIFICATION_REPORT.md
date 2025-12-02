@@ -15,6 +15,7 @@
 - ✅ **Commits**: 2 commits (Initial + Update repository)
 - ✅ **`.env` no `.gitignore`**: ✅ Protegido
 
+
 ---
 
 ## 📁 Estrutura do Projeto
