@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useRef } from 'react';
 import { AgentContext } from './AgentContext';
 import { soundManager } from '../utils/sounds';
 import Avatar from './Avatar';
@@ -25,10 +25,15 @@ export default function LiveAgent() {
   const [input, setInput] = useState('');
   const [introComplete, setIntroComplete] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const introStartedRef = useRef(false); // Ref para garantir que a intro só execute uma vez
 
-  // Sequência de introdução
+  // Sequência de introdução - executa apenas uma vez
   useEffect(() => {
-    if (introComplete) return;
+    // Se já foi iniciada ou já está completa, não fazer nada
+    if (introStartedRef.current || introComplete) return;
+    
+    // Marcar como iniciada
+    introStartedRef.current = true;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -43,8 +48,10 @@ export default function LiveAgent() {
       }
     }, 400);
 
-    return () => clearInterval(interval);
-  }, [introComplete]);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []); // Array vazio - executa apenas uma vez na montagem
 
   const handleCommand = (e) => {
     if (e.key === 'Enter') {

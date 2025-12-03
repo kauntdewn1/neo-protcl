@@ -8,6 +8,7 @@ class SoundManager {
     this.audioContext = null;
     this.enabled = true;
     this.volume = 0.3;
+    this.userInteracted = false; // Flag para rastrear se o usuário já interagiu
     this.init();
   }
 
@@ -15,10 +16,18 @@ class SoundManager {
     // Inicializar AudioContext apenas quando necessário (após interação do usuário)
     if (typeof window !== 'undefined' && window.AudioContext) {
       // Criar contexto após qualquer interação
-      const initContext = () => {
+      const initContext = async () => {
         if (!this.audioContext) {
           this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-          console.log('AudioContext initialized'); // Debug
+          this.userInteracted = true; // Marcar que o usuário interagiu
+          // Tentar resumir imediatamente após criação (se suspenso)
+          if (this.audioContext.state === 'suspended') {
+            try {
+              await this.audioContext.resume();
+            } catch (e) {
+              // Ignorar erro silenciosamente
+            }
+          }
         }
       };
       
@@ -30,20 +39,30 @@ class SoundManager {
   }
 
   ensureContext() {
+    // Não criar AudioContext aqui - só usar se já foi criado por interação do usuário
     if (!this.audioContext) {
-      this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      return false; // Contexto não disponível ainda
     }
+    // Só tentar resumir se já foi interagido com a página
     if (this.audioContext.state === 'suspended') {
-      this.audioContext.resume();
+      // Tentar resumir silenciosamente, mas não mostrar erro se falhar
+      this.audioContext.resume().catch(() => {
+        // AudioContext será resumido na primeira interação do usuário
+      });
     }
+    return true; // Contexto disponível
   }
 
   // Gerar tom beep estilo terminal/retro (mais suave)
   playBeep(frequency = 800, duration = 50, type = 'sine') {
     if (!this.enabled) return;
     
+    // Verificar se o contexto está disponível antes de tentar tocar
+    if (!this.ensureContext()) {
+      return; // Contexto não disponível - silenciosamente retorna
+    }
+    
     try {
-      this.ensureContext();
       const oscillator = this.audioContext.createOscillator();
       const gainNode = this.audioContext.createGain();
 
@@ -87,8 +106,12 @@ class SoundManager {
   }
 
   // Som de página carregada (beep único suave)
+  // Só toca se AudioContext já foi ativado por interação do usuário
   playPageLoad() {
-    this.playBeep(400, 50, 'sine');
+    // Só tocar se o usuário já interagiu e o contexto está rodando
+    if (this.userInteracted && this.audioContext && this.audioContext.state === 'running') {
+      this.playBeep(400, 50, 'sine');
+    }
   }
 
   // Som de hover (beep muito curto e suave)
@@ -130,8 +153,12 @@ class SoundManager {
   playPrinterHead() {
     if (!this.enabled) return;
     
+    // Verificar se o contexto está disponível antes de tentar tocar
+    if (!this.ensureContext()) {
+      return; // Contexto não disponível - silenciosamente retorna
+    }
+    
     try {
-      this.ensureContext();
       
       // Criar um "tick" curto e agudo (mas não muito)
       const oscillator = this.audioContext.createOscillator();
@@ -167,8 +194,12 @@ class SoundManager {
   playPaperAdvance() {
     if (!this.enabled) return;
     
+    // Verificar se o contexto está disponível antes de tentar tocar
+    if (!this.ensureContext()) {
+      return; // Contexto não disponível - silenciosamente retorna
+    }
+    
     try {
-      this.ensureContext();
       
       // Criar som de papel sendo puxado (ruído filtrado)
       const bufferSize = this.audioContext.sampleRate * 0.05; // 50ms de ruído

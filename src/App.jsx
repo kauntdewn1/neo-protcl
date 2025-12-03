@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import NeoProtocol from './pages/home/NeoProtocol';
 // import MCPConsole from './pages/mcp-console'; // Comentado - será instruído depois
 import ManifestoPage from './pages/manifesto/ManifestoPage';
@@ -12,18 +12,24 @@ import { soundManager } from './utils/sounds';
 // Componente para detectar mudanças de rota
 function RouteChangeListener() {
   const location = useLocation();
+  const [isInitialMount, setIsInitialMount] = useState(true);
 
   useEffect(() => {
-    // Tocar som quando a rota mudar
+    // Ignorar o primeiro carregamento (antes de qualquer interação)
+    if (isInitialMount) {
+      setIsInitialMount(false);
+      return;
+    }
+    // Tocar som quando a rota mudar (apenas após primeira interação)
     soundManager.playPageLoad();
-  }, [location.pathname]);
+  }, [location.pathname, isInitialMount]);
 
   return null;
 }
 
 function App() {
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <RouteChangeListener />
       <Routes>
         <Route path="/" element={<NeoProtocol />} />

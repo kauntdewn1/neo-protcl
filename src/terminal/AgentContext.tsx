@@ -40,9 +40,22 @@ export function AgentProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Salvar estado no localStorage quando mudar
+  // Salvar estado no localStorage quando mudar (com debounce para evitar muitas escritas)
   useEffect(() => {
-    localStorage.setItem('neo_agent_state', JSON.stringify(agentState));
+    // Evitar salvar o estado inicial vazio
+    if (agentState.resonance === 0 && 
+        agentState.zonesUnlocked.length === 0 && 
+        agentState.memory.length === 0 && 
+        !agentState.zone && 
+        agentState.coherence === 0) {
+      return; // Não salvar estado vazio inicial
+    }
+    
+    const timeoutId = setTimeout(() => {
+      localStorage.setItem('neo_agent_state', JSON.stringify(agentState));
+    }, 300); // Debounce de 300ms
+
+    return () => clearTimeout(timeoutId);
   }, [agentState]);
 
   const updateAgentState = (updates: Partial<AgentState>) => {
