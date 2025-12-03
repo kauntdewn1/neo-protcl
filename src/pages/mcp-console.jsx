@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { useMCP } from '../hooks/useMCP';
 import Navbar from '../components/Navbar';
 import BottomNavigation from '../components/BottomNavigation';
+import { useDesktopBlock } from '../hooks/useDesktopBlock';
 
 export default function MCPConsole() {
+  useDesktopBlock();
   const { nodes, state, initialized, sendAction, updateState } = useMCP();
   const [command, setCommand] = useState('');
   const [output, setOutput] = useState([]);

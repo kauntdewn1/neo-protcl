@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NΞØ Protocol - Desktop Access</title>
+  <title>NΞØ Protocol - Acesso Desktop</title>
   <style>
     * {
       margin: 0;
@@ -12,178 +12,287 @@
     }
 
     body {
-      background-color: #0a0a0a;
-      color: #f0f0f0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      padding: 2rem;
+      background-color: #ffffff;
+      color: #000000;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .fractal-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #000000;
+      letter-spacing: -0.02em;
+    }
+
+    .message {
+      font-size: 1.0625rem;
+      color: #000000;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .qr-container {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .qr-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
 
-    .container {
-      max-width: 800px;
-      width: 100%;
+    .qr-code {
+      width: 240px;
+      height: 240px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 1rem;
+      background: #ffffff;
+      margin: 0 auto;
     }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #1A9AF7;
+    .qr-code img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .qr-label {
+      font-size: 0.875rem;
+      color: rgba(0, 0, 0, 0.6);
+      margin-top: 1rem;
+      font-weight: 400;
       text-align: center;
     }
 
-    .links-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .link-card {
-      background: #13161A;
-      border: 1px solid rgba(26, 154, 247, 0.3);
-      padding: 1.5rem;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .link-card:hover {
-      border-color: #1A9AF7;
-      transform: translateY(-2px);
-    }
-
-    .link-card a {
-      color: #f0f0f0;
-      text-decoration: none;
-      display: block;
-    }
-
-    .link-card h2 {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-      color: #34E1FF;
-    }
-
-    .link-card p {
-      font-size: 0.875rem;
-      color: rgba(240, 240, 240, 0.7);
-      line-height: 1.5;
-    }
-
-    .image-card {
-      background: #13161A;
-      border: 1px solid rgba(26, 154, 247, 0.3);
-      padding: 1rem;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .image-card:hover {
-      border-color: #1A9AF7;
-      transform: translateY(-2px);
-    }
-
-    .image-card img {
+    .button-container {
+      margin-top: 3rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      height: auto;
-      border-radius: 4px;
+    }
+
+    .button-container.visible {
+      opacity: 1;
+    }
+
+    .warning-button {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background-color: #000000;
+      color: #ffffff;
+      border: none;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .warning-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .button-subtitle {
+      font-size: 0.8125rem;
+      color: rgba(0, 0, 0, 0.5);
+      margin-top: 0.5rem;
+      font-weight: 300;
+      font-style: italic;
+      text-align: center;
     }
 
     .footer {
-      margin-top: 3rem;
+      margin-top: 4rem;
+      font-size: 0.75rem;
+      color: rgba(0, 0, 0, 0.4);
+      font-weight: 300;
       text-align: center;
-      color: rgba(240, 240, 240, 0.5);
-      font-size: 0.875rem;
+      width: 100%;
     }
   </style>
 </head>
 <body>
+  <!-- SVG Y-Mesh Background - Tesselação Hexagonal Contínua -->
+  <svg class="fractal-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="y-mesh-pattern" x="0" y="0" width="200" height="173.2" patternUnits="userSpaceOnUse">
+        <!-- Malha geométrica em Y - Tesselação Hexagonal Perfeita -->
+        <g stroke="#666666" stroke-width="0.8" fill="none" opacity="0.5">
+          <!-- Hexágono: raio 50, centro (100, 86.6) -->
+          <!-- Vértices: -->
+          <!-- V1: (100, 36.6) topo -->
+          <!-- V2: (143.3, 61.6) topo direito -->
+          <!-- V3: (143.3, 111.6) baixo direito -->
+          <!-- V4: (100, 136.6) baixo -->
+          <!-- V5: (56.7, 111.6) baixo esquerdo -->
+          <!-- V6: (56.7, 61.6) topo esquerdo -->
+          
+          <!-- Y central - 6 braços conectando ao centro dos hexágonos adjacentes -->
+          <line x1="100" y1="86.6" x2="100" y2="36.6"/>
+          <line x1="100" y1="86.6" x2="143.3" y2="61.6"/>
+          <line x1="100" y1="86.6" x2="143.3" y2="111.6"/>
+          <line x1="100" y1="86.6" x2="100" y2="136.6"/>
+          <line x1="100" y1="86.6" x2="56.7" y2="111.6"/>
+          <line x1="100" y1="86.6" x2="56.7" y2="61.6"/>
+          
+          <!-- Ys nos vértices - cada vértice conecta ao centro e aos dois vértices adjacentes -->
+          <!-- V1 (topo) - conecta ao centro e aos dois vértices laterais -->
+          <line x1="100" y1="36.6" x2="143.3" y2="61.6"/>
+          <line x1="100" y1="36.6" x2="56.7" y2="61.6"/>
+          
+          <!-- V2 (topo direito) - conecta ao centro e aos vértices adjacentes -->
+          <line x1="143.3" y1="61.6" x2="200" y2="36.6"/>
+          <line x1="143.3" y1="61.6" x2="200" y2="86.6"/>
+          
+          <!-- V3 (baixo direito) - conecta ao centro e aos vértices adjacentes -->
+          <line x1="143.3" y1="111.6" x2="200" y2="136.6"/>
+          <line x1="143.3" y1="111.6" x2="200" y2="86.6"/>
+          
+          <!-- V4 (baixo) - conecta ao centro e aos dois vértices laterais -->
+          <line x1="100" y1="136.6" x2="143.3" y2="111.6"/>
+          <line x1="100" y1="136.6" x2="56.7" y2="111.6"/>
+          
+          <!-- V5 (baixo esquerdo) - conecta ao centro e aos vértices adjacentes -->
+          <line x1="56.7" y1="111.6" x2="0" y2="136.6"/>
+          <line x1="56.7" y1="111.6" x2="0" y2="86.6"/>
+          
+          <!-- V6 (topo esquerdo) - conecta ao centro e aos vértices adjacentes -->
+          <line x1="56.7" y1="61.6" x2="0" y2="36.6"/>
+          <line x1="56.7" y1="61.6" x2="0" y2="86.6"/>
+          
+          <!-- Conexões verticais para hexágonos adjacentes (meio do padrão) -->
+          <line x1="200" y1="36.6" x2="200" y2="86.6"/>
+          <line x1="200" y1="136.6" x2="200" y2="86.6"/>
+          <line x1="0" y1="36.6" x2="0" y2="86.6"/>
+          <line x1="0" y1="136.6" x2="0" y2="86.6"/>
+          
+          <!-- Conexões horizontais para hexágonos acima/abaixo -->
+          <line x1="100" y1="0" x2="100" y2="36.6"/>
+          <line x1="100" y1="136.6" x2="100" y2="173.2"/>
+        </g>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#y-mesh-pattern)"/>
+  </svg>
+
   <div class="container">
     <h1>NΞØ Protocol</h1>
     
-    <div class="links-grid" id="linksContainer">
-      <!-- Links serão inseridos via JavaScript -->
+    <p class="message">
+      Este WebAPP foi desenvolvido exclusivamente para dispositivos móveis.
+    </p>
+
+    <div class="qr-container">
+      <div class="qr-wrapper">
+        <div class="qr-code">
+          <img id="qrImage" src="" alt="QR Code para neo-node.vercel.app" />
+        </div>
+        <p class="qr-label">Escaneie o QR Code para acessar no celular</p>
+      </div>
+    </div>
+
+    <div class="button-container" id="buttonContainer">
+      <a href="#" id="warningButton" class="warning-button">NÃO ACESSE AQUI</a>
+      <p class="button-subtitle">(Não estou em um celular mas quero prosseguir)</p>
     </div>
 
     <div class="footer">
-      <p>Acesso desktop - Links aleatórios do protocolo</p>
+      <p>v1.0 | øcoding</p>
     </div>
   </div>
 
   <script>
-    // Links principais (mais repetidos)
-    const primaryLinks = [
-      {
-        url: 'https://www.metzdowd.com/pipermail/cryptography/2008-October/014810.html',
-        title: 'Bitcoin P2P e-cash paper',
-        description: 'Satoshi Nakamoto - A purely peer-to-peer version of electronic cash'
-      }
-    ];
-
-    // Imagens
-    const images = [
+    // URL do WebAPP
+    const webAppUrl = 'https://neo-node.vercel.app';
+    
+    // Links aleatórios para redirecionamento
+    const randomLinks = [
+      'https://www.metzdowd.com/pipermail/cryptography/2008-October/014810.html',
       'https://gateway.lighthouse.storage/ipfs/bafkreigpuwjg23onehnn3l52kjk7ta7muo7qshml5wwwfnhry2dqdtrvwy',
       'https://gateway.lighthouse.storage/ipfs/bafkreig5bzohnkpmhv5xh6bdcaqbilgqylfobbem3qgmr2ngregg7nnxfq'
     ];
 
-    // Função para embaralhar array
-    function shuffleArray(array) {
-      const shuffled = [...array];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-      return shuffled;
-    }
+    // Gerar QR Code usando API
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(webAppUrl)}`;
+    document.getElementById('qrImage').src = qrCodeUrl;
 
-    // Criar links (repetir o link principal várias vezes + imagens)
-    const linksToShow = [];
-    
-    // Adicionar link principal múltiplas vezes (mais repetido)
-    for (let i = 0; i < 5; i++) {
-      linksToShow.push(...primaryLinks);
-    }
-    
-    // Adicionar imagens
-    images.forEach(img => {
-      linksToShow.push({
-        url: img,
-        title: 'NΞØ Protocol Image',
-        description: '',
-        isImage: true
-      });
-    });
+    // Timer de 30 segundos (silencioso, sem contagem regressiva)
+    const buttonContainer = document.getElementById('buttonContainer');
+    const warningButton = document.getElementById('warningButton');
 
-    // Embaralhar
-    const shuffledLinks = shuffleArray(linksToShow);
+    // Timer silencioso - libera botão após 30 segundos
+    setTimeout(() => {
+      buttonContainer.classList.add('visible');
+    }, 30000);
 
-    // Renderizar
-    const container = document.getElementById('linksContainer');
-    shuffledLinks.forEach(item => {
-      if (item.isImage) {
-        const card = document.createElement('div');
-        card.className = 'image-card';
-        card.onclick = () => window.open(item.url, '_blank');
-        card.innerHTML = `<img src="${item.url}" alt="${item.title}" />`;
-        container.appendChild(card);
-      } else {
-        const card = document.createElement('div');
-        card.className = 'link-card';
-        card.innerHTML = `
-          <a href="${item.url}" target="_blank" rel="noreferrer">
-            <h2>${item.title}</h2>
-            <p>${item.description}</p>
-          </a>
-        `;
-        container.appendChild(card);
+    // Selecionar link aleatório e configurar botão
+    const randomLink = randomLinks[Math.floor(Math.random() * randomLinks.length)];
+    warningButton.href = randomLink;
+    warningButton.target = '_blank';
+    warningButton.rel = 'noreferrer';
+
+    // Prevenir acesso direto ao link antes dos 30 segundos
+    let canClick = false;
+    setTimeout(() => {
+      canClick = true;
+    }, 30000);
+
+    warningButton.addEventListener('click', (e) => {
+      if (!canClick) {
+        e.preventDefault();
+        return false;
       }
     });
   </script>
 </body>
 </html>
-

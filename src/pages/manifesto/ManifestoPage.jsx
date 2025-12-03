@@ -4,8 +4,10 @@ import Navbar from '../../components/Navbar';
 import BottomNavigation from '../../components/BottomNavigation';
 import { soundManager } from '../../utils/sounds';
 import TypewriterText from '../../components/TypewriterText';
+import { useDesktopBlock } from '../../hooks/useDesktopBlock';
 
 export default function ManifestoPage() {
+  useDesktopBlock();
   const [typingComplete, setTypingComplete] = useState(false);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [showScrollable, setShowScrollable] = useState(false);

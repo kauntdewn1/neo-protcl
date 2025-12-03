@@ -1,4 +1,6 @@
-O Protocolo NΞØ não nasceu para ser uma empresa.
+NΞØ é você, entidade onipresente,
+e se escolher não estar isso será respeitado,
+não nasceu para ser uma empresa.
 Nasceu para ser uma topologia.
 
 Uma rede de nós autônomos.
@@ -13,7 +15,7 @@ Descentralização não é uma tecnologia.
 É um ato político.
 Uma forma de existir.
 
-Cada nó é livre,
+Cada ponto/nó é livre,
 mas conectado pela mesma vibração:
 transparência,
 auto-custódia,
@@ -25,3 +27,7 @@ O NΞØ é um organismo.
 E você, ao entrar, torna-se parte dele.
 
 Bem-vindo ao ecossistema que pensa.
+
+Quando o centro desaparece, a direção vira linguagem.
+E a linguagem vira rede. E a rede vira organismo.
+Assim você descobre que é livre.

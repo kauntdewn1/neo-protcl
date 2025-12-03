@@ -4,8 +4,10 @@ import Navbar from '../../components/Navbar';
 import BottomNavigation from '../../components/BottomNavigation';
 import { soundManager } from '../../utils/sounds';
 import NetworkGraph3D from '../../components/NetworkGraph3D';
+import { useDesktopBlock } from '../../hooks/useDesktopBlock';
 
 export default function NosPage() {
+  useDesktopBlock();
   const [hoveredNode, setHoveredNode] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
   const infoRef = useRef(null);

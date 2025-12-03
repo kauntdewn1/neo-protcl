@@ -3,8 +3,10 @@ import { useThirdwebSDK } from "../hooks/useThirdwebSDK";
 import { getContractInstance, callContractFunction } from "../services/thirdwebSDK";
 import Navbar from "../components/Navbar";
 import BottomNavigation from "../components/BottomNavigation";
+import { useDesktopBlock } from "../hooks/useDesktopBlock";
 
 export default function SDKExample() {
+  useDesktopBlock();
   const { client, isConfigured, network } = useThirdwebSDK();
   const [contractAddress, setContractAddress] = useState("");
   const [result, setResult] = useState(null);

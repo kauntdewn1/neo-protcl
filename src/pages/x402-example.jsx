@@ -3,8 +3,10 @@ import PaymentButton from "../components/X402/PaymentButton";
 import { useX402Payment } from "../hooks/useX402Payment";
 import Navbar from "../components/Navbar";
 import BottomNavigation from "../components/BottomNavigation";
+import { useDesktopBlock } from "../hooks/useDesktopBlock";
 
 export default function X402Example() {
+  useDesktopBlock();
   const { isConfigured, loading } = useX402Payment();
   const [result, setResult] = useState(null);
 

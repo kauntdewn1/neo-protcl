@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import BottomNavigation from '../../components/BottomNavigation';
 import { soundManager } from '../../utils/sounds';
+import { useDesktopBlock } from '../../hooks/useDesktopBlock';
 
 const phrases = [
   "auto custódia.",
@@ -13,6 +14,8 @@ const phrases = [
 ];
 
 export default function NeoProtocol() {
+  useDesktopBlock();
+  
   const [currentPhrase, setCurrentPhrase] = useState(phrases[0]);
   const [pullDistance, setPullDistance] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);

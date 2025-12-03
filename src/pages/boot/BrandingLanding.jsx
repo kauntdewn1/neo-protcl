@@ -1,25 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
+import { useDesktopBlock } from '../../hooks/useDesktopBlock';
 
 /**
  * NΞØ HUB — INTAKE PROTOCOL
  * Landing page minimalista para IPFS/ENS
  */
 export default function BrandingLanding() {
+  useDesktopBlock();
+  
   const glowRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const mousePosRef = useRef({ x: 0, y: 0 });
   const glowPosRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Detectar se é desktop e redirecionar
-    const isDesktop = window.innerWidth > 768 || (!('ontouchstart' in window) && navigator.maxTouchPoints === 0);
-    
-    if (isDesktop) {
-      // Redirecionar para página alternativa com links randômicos
-      window.location.href = './desktop-redirect.html';
-      return;
-    }
-
     setIsLoaded(true);
     
     const handleMouseMove = (e) => {
@@ -209,7 +203,7 @@ export default function BrandingLanding() {
         }
 
         .genesis-label {
-          font-size: 0.75rem;
+          font-size: 0.8125rem;
           letter-spacing: 0.15em;
           text-transform: uppercase;
           color: #000000;
@@ -217,7 +211,7 @@ export default function BrandingLanding() {
         }
 
         .particle {
-          font-size: 1.5rem;
+          font-size: 1rem;
           color: #000000;
           line-height: 1;
         }
@@ -248,7 +242,7 @@ export default function BrandingLanding() {
         }
 
         .message-primary {
-          font-size: clamp(1.125rem, 3vw, 1.25rem);
+          font-size: 1.0625rem;
           color: #000000;
           line-height: 1.6;
           margin-bottom: 1rem;
@@ -256,7 +250,7 @@ export default function BrandingLanding() {
         }
 
         .message-secondary {
-          font-size: clamp(0.875rem, 2vw, 1rem);
+          font-size: 0.875rem;
           color: #000000;
           letter-spacing: 0.1em;
           font-weight: 400;

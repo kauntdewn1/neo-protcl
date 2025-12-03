@@ -96,6 +96,36 @@ class SoundManager {
     this.playBeep(900, 10, 'sine');
   }
 
+  // Som de acesso (beep médio)
+  playAccess() {
+    this.playBeep(700, 60, 'sine');
+  }
+
+  // Som de pulso (beep longo e suave)
+  playPulse() {
+    this.playBeep(500, 100, 'sine');
+  }
+
+  // Método genérico para tocar sons por nome
+  play(soundName) {
+    switch (soundName) {
+      case 'confirm':
+        this.playConfirm();
+        break;
+      case 'error':
+        this.playError();
+        break;
+      case 'access':
+        this.playAccess();
+        break;
+      case 'pulse':
+        this.playPulse();
+        break;
+      default:
+        this.playClick();
+    }
+  }
+
   // Som da cabeça da impressora (tick a cada caractere)
   playPrinterHead() {
     if (!this.enabled) return;
