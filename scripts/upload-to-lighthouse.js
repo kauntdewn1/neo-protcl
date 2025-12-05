@@ -17,11 +17,13 @@ const rootDir = join(__dirname, '..');
 // Carregar variáveis de ambiente
 dotenv.config({ path: join(rootDir, '.env') });
 
-const LIGHTHOUSE_API_KEY = process.env.IPFS_API_KEY;
+// Aceita tanto IPFS_API_KEY (legado) quanto VITE_LIGHTHOUSE_API_KEY
+const LIGHTHOUSE_API_KEY = process.env.VITE_LIGHTHOUSE_API_KEY || process.env.IPFS_API_KEY;
 
 if (!LIGHTHOUSE_API_KEY) {
-  console.error('❌ Erro: IPFS_API_KEY não encontrada no .env');
-  console.log('💡 Adicione: IPFS_API_KEY=sua_api_key_no_.env');
+  console.error('❌ Erro: VITE_LIGHTHOUSE_API_KEY ou IPFS_API_KEY não encontrada no .env');
+  console.log('💡 Adicione: VITE_LIGHTHOUSE_API_KEY=sua_api_key_no_.env');
+  console.log('   (ou IPFS_API_KEY para compatibilidade com versões antigas)');
   process.exit(1);
 }
 

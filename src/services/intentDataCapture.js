@@ -47,16 +47,19 @@ function hashMermaid(mermaidCode) {
  * Remove texto livre e mantém apenas padrões identificados
  * @param {Object} intentData - Dados completos do Intent
  * @param {string} walletAddress - Endereço da wallet (opcional)
+ * @param {boolean} complete - Indica se é um mapeamento completo (com dados de contato)
+ * @param {Object} contactData - Dados de contato (email, phone, github) se for completo
  * @returns {Object} Dados anonimizados
  */
-export function anonymizeIntentData(intentData, walletAddress = null) {
+export function anonymizeIntentData(intentData, walletAddress = null, complete = false, contactData = null) {
   const anonymized = {
     version: '1.0',
     timestamp: Date.now(),
     privacy: {
       textResponses: false, // Nunca salvar texto livre
       anonymized: true,
-      consentGiven: true
+      consentGiven: true,
+      completeMapping: complete,
     }
   };
 
@@ -66,13 +69,20 @@ export function anonymizeIntentData(intentData, walletAddress = null) {
   }
 
   // Dados de contato (se fornecidos - apenas para "Ver Completo")
-  if (intentData.userData) {
+  if (complete && contactData) {
     anonymized.contact = {
-      email: intentData.userData.email,
-      phone: intentData.userData.phone || null,
-      github: intentData.userData.github || null,
+      emailHash: contactData.email ? hashString(contactData.email.toLowerCase()) : null,
+      phoneHash: contactData.phone ? hashString(contactData.phone) : null,
+      githubHash: contactData.github ? hashString(contactData.github.toLowerCase()) : null,
     };
-    // Marcar que este é um mapeamento completo
+    anonymized.complete = true;
+  } else if (intentData.userData) {
+    // Compatibilidade com formato antigo
+    anonymized.contact = {
+      emailHash: intentData.userData.email ? hashString(intentData.userData.email.toLowerCase()) : null,
+      phoneHash: intentData.userData.phone ? hashString(intentData.userData.phone) : null,
+      githubHash: intentData.userData.github ? hashString(intentData.userData.github.toLowerCase()) : null,
+    };
     anonymized.complete = true;
   }
 
@@ -109,9 +119,11 @@ export function anonymizeIntentData(intentData, walletAddress = null) {
  * Salva dados anonimizados do Intent no IPFS via Lighthouse
  * @param {Object} intentData - Dados completos do Intent
  * @param {string} walletAddress - Endereço da wallet (opcional, para anonimização)
+ * @param {boolean} complete - Indica se é um mapeamento completo (com dados de contato)
+ * @param {Object} contactData - Dados de contato (email, phone, github) se for completo
  * @returns {Promise<string>} CID do IPFS
  */
-export async function saveIntentToIPFS(intentData, walletAddress = null) {
+export async function saveIntentToIPFS(intentData, walletAddress = null, complete = false, contactData = null) {
   const lighthouseApiKey = import.meta.env.VITE_LIGHTHOUSE_API_KEY;
 
   if (!lighthouseApiKey) {
@@ -119,27 +131,44 @@ export async function saveIntentToIPFS(intentData, walletAddress = null) {
   }
 
   try {
+    console.log('📤 Iniciando upload para IPFS...');
+    
     // Anonimizar dados
-    const anonymizedData = anonymizeIntentData(intentData, walletAddress);
+    const anonymizedData = anonymizeIntentData(intentData, walletAddress, complete, contactData);
 
     // Converter para JSON
     const jsonData = JSON.stringify(anonymizedData, null, 2);
+    console.log('📋 Dados anonimizados preparados:', {
+      version: anonymizedData.version,
+      timestamp: anonymizedData.timestamp,
+      archetypes: anonymizedData.archetypes?.length || 0,
+      hasSynergy: !!anonymizedData.synergy,
+      complete: anonymizedData.complete || false
+    });
 
     // Importar SDK do Lighthouse
     const lighthouse = await import('@lighthouse-web3/sdk');
+    console.log('✅ SDK do Lighthouse importado');
 
     // Criar Blob do JSON
     const blob = new Blob([jsonData], { type: 'application/json' });
     const file = new File([blob], `intent-${Date.now()}.json`, {
       type: 'application/json'
     });
+    console.log('📦 Arquivo criado:', file.name, `(${(file.size / 1024).toFixed(2)} KB)`);
 
     // Fazer upload para IPFS
-    // O método upload do Lighthouse aceita File ou diretório
+    console.log('🚀 Fazendo upload para Lighthouse...');
     const response = await lighthouse.upload(
       file,
       lighthouseApiKey
     );
+
+    console.log('📥 Resposta do Lighthouse recebida:', {
+      hasData: !!response.data,
+      hasHash: !!response.Hash,
+      keys: Object.keys(response)
+    });
 
     // Extrair CID da resposta
     const cid = response.data?.Hash || 
@@ -149,8 +178,8 @@ export async function saveIntentToIPFS(intentData, walletAddress = null) {
                 response.data?.hash;
 
     if (!cid) {
-      console.error('Resposta do Lighthouse:', response);
-      throw new Error('CID não encontrado na resposta do Lighthouse');
+      console.error('❌ Resposta completa do Lighthouse:', JSON.stringify(response, null, 2));
+      throw new Error(`CID não encontrado na resposta do Lighthouse. Estrutura: ${Object.keys(response).join(', ')}`);
     }
 
     console.log('✅ Intent salvo no IPFS:', cid);
@@ -160,7 +189,21 @@ export async function saveIntentToIPFS(intentData, walletAddress = null) {
 
   } catch (error) {
     console.error('❌ Erro ao salvar Intent no IPFS:', error);
-    throw error;
+    
+    // Melhorar mensagem de erro para o usuário
+    let errorMessage = 'Erro ao salvar no IPFS';
+    
+    if (error.message.includes('401') || error.message.includes('Unauthorized')) {
+      errorMessage = 'API Key inválida ou expirada. Verifique VITE_LIGHTHOUSE_API_KEY';
+    } else if (error.message.includes('Network') || error.message.includes('fetch')) {
+      errorMessage = 'Erro de conexão. Verifique sua internet e tente novamente';
+    } else if (error.message.includes('CID não encontrado')) {
+      errorMessage = 'Resposta inesperada do Lighthouse. Tente novamente';
+    } else {
+      errorMessage = error.message || 'Erro desconhecido ao salvar no IPFS';
+    }
+    
+    throw new Error(errorMessage);
   }
 }
 
