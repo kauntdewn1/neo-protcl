@@ -87,11 +87,11 @@ function IntentSystemContent() {
   if (phase === 'intro') {
     return (
       <div
-        className="min-h-screen bg-gradient-to-b from-[#000000] via-[#0A0A0A] to-[#000000] text-white overflow-x-hidden pb-16 safe-area-inset relative"
+        className="min-h-screen bg-[#F9FAFB] text-[#111827] overflow-x-hidden pb-16 safe-area-inset relative"
         style={{ paddingBottom: `calc(80px + env(safe-area-inset-bottom))` }}
       >
-        {/* Clean Background - Aqua gradient */}
-        <div className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-[#000000] via-[#0A0A0A] to-[#000000]"></div>
+        {/* Clean Background - Light mode */}
+        <div className="fixed inset-0 pointer-events-none z-0 bg-[#F9FAFB]"></div>
 
         <div className="relative z-10">
           <div className="ios-status-bar"></div>
@@ -100,39 +100,32 @@ function IntentSystemContent() {
           <main className="container mx-auto px-4 py-8 pt-safe">
             {/* Hero Card - Mapeie sua arquitetura interna (TOP) */}
             <div 
-              className="mb-6 p-8 spring-in rounded-3xl"
+              className="mb-6 p-8 spring-in rounded-3xl bg-white"
               style={{
-                background: 'rgba(255, 255, 255, 0.03)',
-                backdropFilter: 'blur(60px) saturate(200%)',
-                WebkitBackdropFilter: 'blur(60px) saturate(200%)',
-                border: '0.5px solid rgba(255, 255, 255, 0.08)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+                border: '1px solid #E5E7EB',
               }}
             >
               <div className="flex flex-col items-center text-center">
                 <div 
-                  className="w-24 h-24 mb-6 rounded-3xl flex items-center justify-center"
+                  className="w-24 h-24 mb-6 rounded-3xl flex items-center justify-center bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-500"
                   style={{
-                    background: 'rgba(0, 255, 255, 0.08)',
-                    backdropFilter: 'blur(40px) saturate(180%)',
-                    WebkitBackdropFilter: 'blur(40px) saturate(180%)',
-                    border: '0.5px solid rgba(0, 255, 255, 0.15)',
-                    boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 20px rgba(0, 255, 255, 0.1)',
+                    boxShadow: '0 8px 24px rgba(34, 211, 238, 0.25)',
                   }}
                 >
-                  <span className="text-5xl font-mono text-cyan-400/90">{particles.theta}</span>
+                  <span className="text-5xl font-mono text-white">{particles.theta}</span>
                 </div>
-                <h1 className="ios-headline text-white mb-3 text-4xl font-bold tracking-tight">NΞØ INTENT</h1>
-                <p className="ios-body text-white/90 mb-6 leading-relaxed max-w-lg text-lg font-medium">
+                <h1 className="ios-headline text-[#111827] mb-3 text-4xl font-bold tracking-tight">NΞØ INTENT</h1>
+                <p className="ios-body text-[#111827] mb-6 leading-relaxed max-w-lg text-lg font-medium">
                   Mapeie sua arquitetura interna.
                 </p>
-                <p className="ios-body text-white/70 leading-relaxed max-w-lg mb-4 text-base">
+                <p className="ios-body text-[#4B5563] leading-relaxed max-w-lg mb-4 text-base">
                   Através de narrativas livres, revelamos os algoritmos profundos que dirigem suas{' '}
-                  <span className="text-cyan-400 font-semibold">decisões</span>,{' '}
-                  <span className="text-blue-400 font-semibold">conexões</span> e{' '}
-                  <span className="text-purple-400 font-semibold">criações</span>.
+                  <span className="text-[#06B6D4] font-semibold">decisões</span>,{' '}
+                  <span className="text-[#3B82F6] font-semibold">conexões</span> e{' '}
+                  <span className="text-[#A855F7] font-semibold">criações</span>.
                 </p>
-                <p className="ios-caption text-white/50 italic max-w-lg">
+                <p className="ios-caption text-[#9CA3AF] italic max-w-lg">
                   Você não receberá rótulos. Receberá um diagrama vivo da sua estratégia de existência.
                 </p>
               </div>
@@ -141,93 +134,73 @@ function IntentSystemContent() {
             {/* Bento Grid - 3 Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               <div 
-                className="p-6 spring-in rounded-2xl"
+                className="p-6 spring-in rounded-2xl bg-white"
                 style={{
-                  background: 'rgba(255, 255, 255, 0.02)',
-                  backdropFilter: 'blur(50px) saturate(200%)',
-                  WebkitBackdropFilter: 'blur(50px) saturate(200%)',
-                  border: '0.5px solid rgba(255, 255, 255, 0.06)',
-                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                  border: '1px solid #E5E7EB',
                   animationDelay: '0.1s',
                 }}
               >
                 <div 
                   className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
                   style={{
-                    background: 'rgba(255, 255, 255, 0.04)',
-                    backdropFilter: 'blur(30px)',
-                    WebkitBackdropFilter: 'blur(30px)',
-                    border: '0.5px solid rgba(255, 255, 255, 0.08)',
+                    background: 'rgba(34, 211, 238, 0.03)',
+                    border: '1px solid #E5E7EB',
                   }}
                 >
-                  <span className="text-3xl text-white/80">{particles.null}</span>
+                  <span className="text-3xl text-[#4B5563]">{particles.null}</span>
                 </div>
-                <h3 className="text-base font-semibold text-white mb-2">Não Perguntamos</h3>
-                <p className="ios-caption text-white/60">Quem você é</p>
+                <p className="text-lg font-semibold text-[#111827] mb-1.5 leading-tight">Quem você é</p>
+                <p className="text-xs text-[#9CA3AF] uppercase tracking-wide">Não Perguntamos</p>
               </div>
 
               <div 
-                className="p-6 spring-in rounded-2xl"
+                className="p-6 spring-in rounded-2xl bg-white"
                 style={{
-                  background: 'rgba(255, 255, 255, 0.02)',
-                  backdropFilter: 'blur(50px) saturate(200%)',
-                  WebkitBackdropFilter: 'blur(50px) saturate(200%)',
-                  border: '0.5px solid rgba(255, 255, 255, 0.06)',
-                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                  border: '1px solid #E5E7EB',
                   animationDelay: '0.2s',
                 }}
               >
                 <div 
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-gradient-to-br from-cyan-400 to-blue-400"
                   style={{
-                    background: 'rgba(0, 255, 255, 0.06)',
-                    backdropFilter: 'blur(30px)',
-                    WebkitBackdropFilter: 'blur(30px)',
-                    border: '0.5px solid rgba(0, 255, 255, 0.12)',
+                    boxShadow: '0 4px 12px rgba(34, 211, 238, 0.25)',
                   }}
                 >
-                  <span className="text-3xl text-cyan-400/90">{particles.active}</span>
+                  <span className="text-3xl text-white">{particles.active}</span>
                 </div>
-                <h3 className="text-base font-semibold text-white mb-2">Revelamos</h3>
-                <p className="ios-caption text-white/60">Como você opera</p>
+                <p className="text-lg font-semibold text-[#111827] mb-1.5 leading-tight">Como você opera</p>
+                <p className="text-xs text-[#9CA3AF] uppercase tracking-wide">Revelamos</p>
               </div>
 
               <div 
-                className="p-6 spring-in rounded-2xl"
+                className="p-6 spring-in rounded-2xl bg-white"
                 style={{
-                  background: 'rgba(255, 255, 255, 0.02)',
-                  backdropFilter: 'blur(50px) saturate(200%)',
-                  WebkitBackdropFilter: 'blur(50px) saturate(200%)',
-                  border: '0.5px solid rgba(255, 255, 255, 0.06)',
-                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                  border: '1px solid #E5E7EB',
                   animationDelay: '0.3s',
                 }}
               >
                 <div 
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-gradient-to-br from-purple-400 to-pink-400"
                   style={{
-                    background: 'rgba(0, 255, 255, 0.06)',
-                    backdropFilter: 'blur(30px)',
-                    WebkitBackdropFilter: 'blur(30px)',
-                    border: '0.5px solid rgba(0, 255, 255, 0.12)',
+                    boxShadow: '0 4px 12px rgba(168, 85, 247, 0.25)',
                   }}
                 >
-                  <span className="text-3xl text-cyan-400/90">{particles.nucleus}</span>
+                  <span className="text-3xl text-white">{particles.nucleus}</span>
                 </div>
-                <h3 className="text-base font-semibold text-white mb-2">Você Recebe</h3>
-                <p className="ios-caption text-white/60">Um mapa vivo</p>
+                <p className="text-lg font-semibold text-[#111827] mb-1.5 leading-tight">Um mapa vivo</p>
+                <p className="text-xs text-[#9CA3AF] uppercase tracking-wide">Você Recebe</p>
               </div>
             </div>
 
             {/* CTA Button Card */}
             <div 
-              className="p-6 mb-6 spring-in rounded-2xl"
+              className="p-6 mb-6 spring-in rounded-2xl bg-white"
               style={{
-                background: 'rgba(255, 255, 255, 0.02)',
-                backdropFilter: 'blur(50px) saturate(200%)',
-                WebkitBackdropFilter: 'blur(50px) saturate(200%)',
-                border: '0.5px solid rgba(255, 255, 255, 0.06)',
-                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                border: '1px solid #E5E7EB',
                 animationDelay: '0.4s',
               }}
             >
@@ -236,21 +209,9 @@ function IntentSystemContent() {
                   setPhase('dimensions');
                   soundManager.playConfirm();
                 }}
-                className="w-full group relative px-8 py-5 text-white font-semibold rounded-2xl transition-all duration-300 flex items-center justify-center gap-3"
+                className="w-full group relative px-8 py-5 text-white font-semibold rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400"
                 style={{
-                  background: 'rgba(0, 255, 255, 0.12)',
-                  backdropFilter: 'blur(40px) saturate(180%)',
-                  WebkitBackdropFilter: 'blur(40px) saturate(180%)',
-                  border: '0.5px solid rgba(0, 255, 255, 0.2)',
-                  boxShadow: '0 4px 20px rgba(0, 255, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(0, 255, 255, 0.18)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 255, 255, 0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(0, 255, 255, 0.12)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 255, 255, 0.2)';
+                  boxShadow: '0 8px 24px rgba(34, 211, 238, 0.25)',
                 }}
               >
                 <span className="text-base">Iniciar Mapeamento</span>
@@ -260,21 +221,18 @@ function IntentSystemContent() {
 
             {/* Privacy Footer */}
             <div 
-              className="p-5 text-center spring-in rounded-2xl"
+              className="p-5 text-center spring-in rounded-2xl bg-white"
               style={{
-                background: 'rgba(255, 255, 255, 0.015)',
-                backdropFilter: 'blur(40px) saturate(200%)',
-                WebkitBackdropFilter: 'blur(40px) saturate(200%)',
-                border: '0.5px solid rgba(255, 255, 255, 0.05)',
-                boxShadow: '0 2px 16px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                border: '1px solid #E5E7EB',
                 animationDelay: '0.5s',
               }}
             >
               <div className="flex items-center justify-center gap-2 mb-2">
-                <Lock size={14} className="text-white/40" />
-                <p className="ios-caption text-white/50">Seus padrões permanecem privados</p>
+                <Lock size={14} className="text-[#9CA3AF]" />
+                <p className="ios-caption text-[#4B5563]">Seus padrões permanecem privados</p>
               </div>
-              <p className="ios-caption text-white/30">NΞØ Protocol © 2025</p>
+              <p className="ios-caption text-[#9CA3AF]">NΞØ Protocol © 2025</p>
             </div>
 
             <div className="h-4"></div>
@@ -290,11 +248,11 @@ function IntentSystemContent() {
   if (phase === 'dimensions') {
     return (
       <div
-        className="min-h-screen bg-[#0A0A0A] text-white overflow-x-hidden pb-16 safe-area-inset relative"
+        className="min-h-screen bg-[#F9FAFB] text-[#111827] overflow-x-hidden pb-16 safe-area-inset relative"
         style={{ paddingBottom: `calc(80px + env(safe-area-inset-bottom))` }}
       >
-        {/* Clean Background */}
-        <div className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-[#0A0A0A] via-[#0F0F0F] to-[#0A0A0A]"></div>
+        {/* Clean Background - Light mode */}
+        <div className="fixed inset-0 pointer-events-none z-0 bg-[#F9FAFB]"></div>
 
         <div className="relative z-10">
           <div className="ios-status-bar"></div>
@@ -303,18 +261,15 @@ function IntentSystemContent() {
           <main className="container mx-auto px-4 py-8 pt-safe">
             {/* Header Card */}
             <div 
-              className="mb-6 p-6 spring-in rounded-3xl"
+              className="mb-6 p-6 spring-in rounded-3xl bg-white"
               style={{
-                background: 'rgba(255, 255, 255, 0.03)',
-                backdropFilter: 'blur(60px) saturate(200%)',
-                WebkitBackdropFilter: 'blur(60px) saturate(200%)',
-                border: '0.5px solid rgba(255, 255, 255, 0.08)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+                border: '1px solid #E5E7EB',
               }}
             >
               <div className="text-center">
-                <h2 className="ios-headline text-white mb-3 text-3xl font-bold">Suas Dimensões</h2>
-                <p className="ios-body text-white/70 text-base">
+                <h2 className="ios-headline text-[#111827] mb-3 text-3xl font-bold">Suas Dimensões</h2>
+                <p className="ios-body text-[#4B5563] text-base">
                   Selecione e preencha livremente. Explore todas ou apenas as que ressoam.
                 </p>
               </div>
@@ -326,34 +281,36 @@ function IntentSystemContent() {
                 <div key={dim.id} className="space-y-3">
                   <div
                     onClick={() => handleSelectDimension(dim.id)}
-                    className="p-6 cursor-pointer transition-all duration-300 spring-in rounded-2xl"
+                    className="p-6 cursor-pointer transition-all duration-300 spring-in rounded-2xl bg-white"
                     style={{
-                      background: selectedDimensions.includes(dim.id)
-                        ? 'rgba(0, 255, 255, 0.08)'
-                        : 'rgba(255, 255, 255, 0.02)',
-                      backdropFilter: 'blur(50px) saturate(200%)',
-                      WebkitBackdropFilter: 'blur(50px) saturate(200%)',
                       border: selectedDimensions.includes(dim.id)
-                        ? '0.5px solid rgba(0, 255, 255, 0.25)'
-                        : '0.5px solid rgba(255, 255, 255, 0.06)',
+                        ? '2px solid #06B6D4'
+                        : '1px solid #E5E7EB',
                       boxShadow: selectedDimensions.includes(dim.id)
-                        ? '0 4px 24px rgba(0, 255, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                        : '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                        ? '0 0 0 3px rgba(34, 211, 238, 0.1), 0 4px 12px rgba(0, 0, 0, 0.08)'
+                        : '0 2px 8px rgba(0, 0, 0, 0.04)',
                       animationDelay: `${0.1 + idx * 0.1}s`,
                     }}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <div className="text-5xl mb-4 text-cyan-400/90">{dim.particle}</div>
-                        <h3 className="text-xl font-semibold text-white mb-2">{dim.title}</h3>
-                        <p className="ios-body text-white/60 mb-3">{dim.subtitle}</p>
-                        {!selectedDimensions.includes(dim.id) && (
-                          <p className="ios-caption text-cyan-400/70 italic">{dim.prompt}</p>
+                        <div className="text-5xl mb-4 text-[#06B6D4]">{dim.particle}</div>
+                        {!selectedDimensions.includes(dim.id) ? (
+                          <>
+                            <p className="text-xl font-semibold text-[#111827] mb-2 leading-tight">{dim.prompt}</p>
+                            <p className="text-sm text-[#9CA3AF] uppercase tracking-wide mb-1">{dim.title}</p>
+                            <p className="ios-body text-[#4B5563]">{dim.subtitle}</p>
+                          </>
+                        ) : (
+                          <>
+                            <h3 className="text-xl font-semibold text-[#111827] mb-2">{dim.title}</h3>
+                            <p className="ios-body text-[#4B5563] mb-3">{dim.subtitle}</p>
+                          </>
                         )}
                       </div>
                       {selectedDimensions.includes(dim.id) && (
-                        <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center border border-cyan-500/40">
-                          <span className="text-cyan-400 font-bold text-lg">✓</span>
+                        <div className="w-10 h-10 rounded-full bg-[#06B6D4] flex items-center justify-center border-2 border-[#06B6D4]">
+                          <span className="text-white font-bold text-lg">✓</span>
                         </div>
                       )}
                     </div>
@@ -361,30 +318,19 @@ function IntentSystemContent() {
 
                   {selectedDimensions.includes(dim.id) && (
                     <div 
-                      className="p-6 ml-4 rounded-2xl"
+                      className="p-6 ml-4 rounded-2xl bg-white"
                       style={{
-                        background: 'rgba(255, 255, 255, 0.025)',
-                        backdropFilter: 'blur(40px) saturate(200%)',
-                        WebkitBackdropFilter: 'blur(40px) saturate(200%)',
-                        borderLeft: '2px solid rgba(0, 255, 255, 0.2)',
-                        borderTop: '0.5px solid rgba(255, 255, 255, 0.06)',
-                        borderRight: '0.5px solid rgba(255, 255, 255, 0.06)',
-                        borderBottom: '0.5px solid rgba(255, 255, 255, 0.06)',
-                        boxShadow: '0 2px 16px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                        borderLeft: '3px solid #06B6D4',
+                        border: '1px solid #E5E7EB',
+                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
                       }}
                     >
-                      <p className="ios-body text-white/70 mb-4">{dim.prompt}</p>
+                      <p className="ios-body text-[#4B5563] mb-4">{dim.prompt}</p>
                       <textarea
                         value={responses[dim.id] || ''}
                         onChange={(e) => handleResponseChange(dim.id, e.target.value)}
                         placeholder="Escreva livremente. Sem filtros. Fluxo de consciência puro..."
-                        className="w-full h-40 p-5 rounded-2xl text-white placeholder-white/30 focus:outline-none transition-all resize-none font-light leading-relaxed text-base"
-                        style={{
-                          background: 'rgba(0, 0, 0, 0.3)',
-                          backdropFilter: 'blur(20px)',
-                          WebkitBackdropFilter: 'blur(20px)',
-                          border: '0.5px solid rgba(255, 255, 255, 0.08)',
-                        }}
+                        className="w-full h-40 p-5 rounded-2xl text-[#111827] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all resize-none font-light leading-relaxed text-base bg-[#F9FAFB] border border-[#E5E7EB]"
                       />
                       <div className="flex justify-between items-center mt-4">
                         <button
@@ -393,7 +339,7 @@ function IntentSystemContent() {
                         >
                           Remover
                         </button>
-                        <span className="ios-caption text-white/40">{(responses[dim.id] || '').length} caracteres</span>
+                        <span className="ios-caption text-[#9CA3AF]">{(responses[dim.id] || '').length} caracteres</span>
                       </div>
                     </div>
                   )}
@@ -403,19 +349,16 @@ function IntentSystemContent() {
 
             {/* Action Bar */}
             <div 
-              className="p-6 mb-6 rounded-2xl"
+              className="p-6 mb-6 rounded-2xl bg-white"
               style={{
-                background: 'rgba(255, 255, 255, 0.02)',
-                backdropFilter: 'blur(50px) saturate(200%)',
-                WebkitBackdropFilter: 'blur(50px) saturate(200%)',
-                border: '0.5px solid rgba(255, 255, 255, 0.06)',
-                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                border: '1px solid #E5E7EB',
               }}
             >
               <div className="flex justify-between items-center flex-wrap gap-4">
                 <div>
-                  <p className="ios-caption text-white/50">{selectedDimensions.length} dimensão(ões) selecionada(s)</p>
-                  <p className="text-cyan-400 font-semibold text-base mt-1">
+                  <p className="ios-caption text-[#4B5563]">{selectedDimensions.length} dimensão(ões) selecionada(s)</p>
+                  <p className="text-[#06B6D4] font-semibold text-base mt-1">
                     {selectedDimensions.every((d) => responses[d]?.trim())
                       ? '✓ Pronto para mapear'
                       : 'Preencha para continuar'}
@@ -445,7 +388,7 @@ function IntentSystemContent() {
                   >
                     {loading ? (
                       <>
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-[#9CA3AF] border-t-[#06B6D4] rounded-full animate-spin" />
                         Processando...
                       </>
                     ) : (
@@ -478,11 +421,11 @@ function IntentSystemContent() {
 
     return (
       <div
-        className="min-h-screen bg-[#0A0A0A] text-white overflow-x-hidden pb-16 safe-area-inset relative"
+        className="min-h-screen bg-[#F9FAFB] text-[#111827] overflow-x-hidden pb-16 safe-area-inset relative"
         style={{ paddingBottom: `calc(80px + env(safe-area-inset-bottom))` }}
       >
-        {/* Clean Background */}
-        <div className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-[#0A0A0A] via-[#0F0F0F] to-[#0A0A0A]"></div>
+        {/* Clean Background - Light mode */}
+        <div className="fixed inset-0 pointer-events-none z-0 bg-[#F9FAFB]"></div>
 
         <div className="relative z-10">
           <div className="ios-status-bar"></div>
@@ -491,53 +434,46 @@ function IntentSystemContent() {
           <main className="container mx-auto px-4 py-8 pt-safe">
             {/* Header */}
             <div 
-              className="mb-6 p-6 spring-in rounded-3xl"
+              className="mb-6 p-6 spring-in rounded-3xl bg-white"
               style={{
-                background: 'rgba(255, 255, 255, 0.03)',
-                backdropFilter: 'blur(60px) saturate(200%)',
-                WebkitBackdropFilter: 'blur(60px) saturate(200%)',
-                border: '0.5px solid rgba(255, 255, 255, 0.08)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
+                border: '1px solid #E5E7EB',
               }}
             >
-              <h2 className="ios-headline text-white text-center text-4xl font-bold">Seu Mapa Integrado</h2>
+              <h2 className="ios-headline text-[#111827] text-center text-4xl font-bold">Seu Mapa Integrado</h2>
             </div>
 
             {/* Pattern Card - Large */}
             <div 
-              className="mb-6 p-8 spring-in rounded-3xl"
+              className="mb-6 p-8 spring-in rounded-3xl bg-white border-2 border-[#06B6D4]"
               style={{
-                background: 'rgba(0, 255, 255, 0.06)',
-                backdropFilter: 'blur(60px) saturate(200%)',
-                WebkitBackdropFilter: 'blur(60px) saturate(200%)',
-                border: '0.5px solid rgba(0, 255, 255, 0.2)',
-                boxShadow: '0 8px 32px rgba(0, 255, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
+                boxShadow: '0 8px 24px rgba(34, 211, 238, 0.25)',
                 animationDelay: '0.1s',
               }}
             >
               <div className="mb-6">
-                <span className="ios-caption text-cyan-400 uppercase tracking-widest font-bold">Padrão Integrado</span>
-                <h3 className="ios-headline text-white mt-3 text-3xl font-bold">{result.synergy.name}</h3>
+                <span className="ios-caption text-[#06B6D4] uppercase tracking-widest font-bold">Padrão Integrado</span>
+                <h3 className="ios-headline text-[#111827] mt-3 text-3xl font-bold">{result.synergy.name}</h3>
               </div>
 
-              <div className="space-y-4 border-t border-white/10 pt-6">
-                <p className="ios-body text-white/90 leading-relaxed text-lg">{result.synergy.intent}</p>
+              <div className="space-y-4 border-t border-[#E5E7EB] pt-6">
+                <p className="ios-body text-[#111827] leading-relaxed text-lg">{result.synergy.intent}</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 pt-8 border-t border-white/10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 pt-8 border-t border-[#E5E7EB]">
                 <div>
-                  <p className="ios-caption text-cyan-400 uppercase font-bold mb-3">Superpoder</p>
-                  <p className="ios-body text-white/90">{result.synergy.power}</p>
+                  <p className="ios-caption text-[#06B6D4] uppercase font-bold mb-3">Superpoder</p>
+                  <p className="ios-body text-[#111827]">{result.synergy.power}</p>
                 </div>
                 <div>
-                  <p className="ios-caption text-red-400 uppercase font-bold mb-3">Alerta</p>
-                  <p className="ios-body text-white/90">{result.synergy.alert}</p>
+                  <p className="ios-caption text-[#EF4444] uppercase font-bold mb-3">Alerta</p>
+                  <p className="ios-body text-[#111827]">{result.synergy.alert}</p>
                 </div>
               </div>
 
-              <div className="mt-8 pt-8 border-t border-white/10">
-                <p className="ios-caption text-cyan-400 uppercase font-bold mb-3">Metáfora Operacional</p>
-                <p className="ios-body text-white/70 italic text-base">{result.synergy.metaphor}</p>
+              <div className="mt-8 pt-8 border-t border-[#E5E7EB]">
+                <p className="ios-caption text-[#06B6D4] uppercase font-bold mb-3">Metáfora Operacional</p>
+                <p className="ios-body text-[#4B5563] italic text-base">{result.synergy.metaphor}</p>
               </div>
             </div>
 
@@ -546,43 +482,34 @@ function IntentSystemContent() {
               {result.selectedDimensions.map((dimId, idx) => (
                 <div 
                   key={dimId} 
-                  className="p-5 spring-in rounded-2xl"
+                  className="p-5 spring-in rounded-2xl bg-white"
                   style={{
-                    background: 'rgba(255, 255, 255, 0.02)',
-                    backdropFilter: 'blur(50px) saturate(200%)',
-                    WebkitBackdropFilter: 'blur(50px) saturate(200%)',
-                    border: '0.5px solid rgba(255, 255, 255, 0.06)',
-                    boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                    border: '1px solid #E5E7EB',
                     animationDelay: `${0.2 + idx * 0.1}s`,
                   }}
                 >
-                  <p className="ios-caption text-cyan-400 uppercase font-bold mb-2">Dimensão {idx + 1}</p>
-                  <p className="ios-body text-white font-semibold mb-2 text-lg">{dimLabels[dimId]}</p>
-                  <p className="ios-caption text-cyan-300">→ {result.profileData[dimId]?.archetype}</p>
+                  <p className="ios-caption text-[#06B6D4] uppercase font-bold mb-2">Dimensão {idx + 1}</p>
+                  <p className="ios-body text-[#111827] font-semibold mb-2 text-lg">{dimLabels[dimId]}</p>
+                  <p className="ios-caption text-[#22D3EE]">→ {result.profileData[dimId]?.archetype}</p>
                 </div>
               ))}
             </div>
 
             {/* Mermaid Diagram Card */}
             <div 
-              className="p-6 mb-6 spring-in rounded-2xl"
+              className="p-6 mb-6 spring-in rounded-2xl bg-white"
               style={{
-                background: 'rgba(255, 255, 255, 0.02)',
-                backdropFilter: 'blur(50px) saturate(200%)',
-                WebkitBackdropFilter: 'blur(50px) saturate(200%)',
-                border: '0.5px solid rgba(255, 255, 255, 0.06)',
-                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                border: '1px solid #E5E7EB',
                 animationDelay: '0.5s',
               }}
             >
-              <h3 className="ios-headline text-white mb-5 text-2xl font-bold">Diagrama Visual</h3>
+              <h3 className="ios-headline text-[#111827] mb-5 text-2xl font-bold">Diagrama Visual</h3>
               <div 
-                className="p-5 rounded-2xl"
+                className="p-5 rounded-2xl bg-[#F9FAFB]"
                 style={{
-                  background: 'rgba(0, 0, 0, 0.4)',
-                  backdropFilter: 'blur(30px)',
-                  WebkitBackdropFilter: 'blur(30px)',
-                  border: '0.5px solid rgba(255, 255, 255, 0.08)',
+                  border: '1px solid #E5E7EB',
                 }}
               >
                 <MermaidDiagram diagram={result.mermaidDiagram} />
@@ -591,13 +518,10 @@ function IntentSystemContent() {
 
             {/* Action Buttons */}
             <div 
-              className="p-6 mb-6 rounded-2xl"
+              className="p-6 mb-6 rounded-2xl bg-white"
               style={{
-                background: 'rgba(255, 255, 255, 0.02)',
-                backdropFilter: 'blur(50px) saturate(200%)',
-                WebkitBackdropFilter: 'blur(50px) saturate(200%)',
-                border: '0.5px solid rgba(255, 255, 255, 0.06)',
-                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                border: '1px solid #E5E7EB',
               }}
             >
               <div className="flex gap-4">
