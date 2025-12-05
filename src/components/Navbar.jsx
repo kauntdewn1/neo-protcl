@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { soundManager } from '../utils/sounds';
-import WalletIconButton from './WalletConnect/WalletIconButton';
+// import WalletIconButton from './WalletConnect/WalletIconButton'; // Comentado - wallet não está sendo usada
 
 export default function Navbar() {
   return (
@@ -43,7 +43,7 @@ export default function Navbar() {
               <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div>
               <span className="text-[10px] font-medium text-green-400 uppercase tracking-wide">Synced</span>
             </div>
-            <WalletIconButton />
+            {/* <WalletIconButton /> Comentado - wallet não está sendo usada */}
           </div>
         </div>
       </div>

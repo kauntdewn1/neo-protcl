@@ -107,27 +107,20 @@ function IntentSystemContent() {
               }}
             >
               <div className="flex flex-col items-center text-center">
-                <div 
-                  className="w-24 h-24 mb-6 rounded-3xl flex items-center justify-center bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-500 overflow-hidden"
-                  style={{
-                    boxShadow: '0 8px 24px rgba(34, 211, 238, 0.25)',
-                  }}
-                >
-                  <img 
-                    src="/splash/intent_box.png" 
-                    alt="NΞØ Intent" 
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <h1 className="ios-headline text-[#111827] mb-3 text-4xl font-bold tracking-tight">NΞØ INTENT</h1>
+                <img 
+                  src="/splash/intent_box.png" 
+                  alt="NΞØ Intent" 
+                  className="w-70 h-70 object-contain"
+                  style={{ marginBottom: '-20px' }}
+                />
                 <p className="ios-body text-[#111827] mb-6 leading-relaxed max-w-lg text-lg font-medium">
                   Mapeie sua arquitetura interna.
                 </p>
                 <p className="ios-body text-[#4B5563] leading-relaxed max-w-lg mb-4 text-base">
                   Através de narrativas livres, revelamos os algoritmos profundos que dirigem suas{' '}
-                  <span className="text-[#06B6D4] font-semibold">decisões</span>,{' '}
+                  <span className="text-[#3B82F6] font-semibold">decisões</span>,{' '}
                   <span className="text-[#3B82F6] font-semibold">conexões</span> e{' '}
-                  <span className="text-[#A855F7] font-semibold">criações</span>.
+                  <span className="text-[#3B82F6] font-semibold">criações</span>.
                 </p>
                 <p className="ios-caption text-[#9CA3AF] italic max-w-lg">
                   Você não receberá rótulos. Receberá um diagrama vivo da sua estratégia de existência.
@@ -146,20 +139,21 @@ function IntentSystemContent() {
                 }}
               >
                 <div 
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 relative"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 relative"
                   style={{
-                    background: 'rgba(34, 211, 238, 0.03)',
-                    border: '1px solid #E5E7EB',
+                    background: '#0A1929',
+                    border: '1px solid #1E3A5F',
+                    boxShadow: '0 0 12px rgba(37, 99, 235, 0.4), inset 0 0 8px rgba(37, 99, 235, 0.2)',
                   }}
                 >
-                  <span className="text-3xl text-[#4B5563]">{particles.null}</span>
+                  <span className="text-xl text-[#60A5FA]">{particles.theta}</span>
                   <img 
                     src="/splash/box_intent.png" 
                     alt="NΞØ" 
-                    className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                    className="absolute inset-0 w-full h-full object-contain pointer-events-none opacity-60"
                   />
                 </div>
-                <p className="text-xs text-[#9CA3AF] uppercase tracking-wide">Não Perguntamos</p>
+                <p className="text-xs text-[#3B82F6] uppercase tracking-wide">Não Perguntamos</p>
                 <p className="text-lg font-semibold text-[#111827] mb-1.5 leading-tight">Quem você é</p>
               </div>
 
@@ -172,19 +166,21 @@ function IntentSystemContent() {
                 }}
               >
                 <div 
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-gradient-to-br from-cyan-400 to-blue-400 relative"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 relative"
                   style={{
-                    boxShadow: '0 4px 12px rgba(34, 211, 238, 0.25)',
+                    background: '#0A1929',
+                    border: '1px solid #1E3A5F',
+                    boxShadow: '0 0 12px rgba(37, 99, 235, 0.4), inset 0 0 8px rgba(37, 99, 235, 0.2)',
                   }}
                 >
-                  <span className="text-3xl text-white">{particles.active}</span>
+                  <span className="text-xl text-[#60A5FA]">{particles.null}</span>
                   <img 
                     src="/splash/box_intent.png" 
                     alt="NΞØ" 
-                    className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                    className="absolute inset-0 w-full h-full object-contain pointer-events-none opacity-60"
                   />
                 </div>
-                <p className="text-xs text-[#9CA3AF] uppercase tracking-wide">Revelamos</p>
+                <p className="text-xs text-[#3B82F6] uppercase tracking-wide">Revelamos</p>
                 <p className="text-lg font-semibold text-[#111827] mb-1.5 leading-tight">Como você opera no campo simbólico</p>
               </div>
 
@@ -197,19 +193,21 @@ function IntentSystemContent() {
                 }}
               >
                 <div 
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-gradient-to-br from-purple-400 to-pink-400 relative"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 relative"
                   style={{
-                    boxShadow: '0 4px 12px rgba(168, 85, 247, 0.25)',
+                    background: '#0A1929',
+                    border: '1px solid #1E3A5F',
+                    boxShadow: '0 0 12px rgba(37, 99, 235, 0.4), inset 0 0 8px rgba(37, 99, 235, 0.2)',
                   }}
                 >
-                  <span className="text-3xl text-white">{particles.nucleus}</span>
+                  <span className="text-xl text-[#60A5FA]">{particles.nucleus}</span>
                   <img 
                     src="/splash/box_intent.png" 
                     alt="NΞØ" 
-                    className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                    className="absolute inset-0 w-full h-full object-contain pointer-events-none opacity-60"
                   />
                 </div>
-                <p className="text-xs text-[#9CA3AF] uppercase tracking-wide">Você Recebe</p>
+                <p className="text-xs text-[#3B82F6] uppercase tracking-wide">Você Recebe</p>
                 <p className="text-lg font-semibold text-[#111827] mb-1.5 leading-tight">Um mapa vivo com a sua estrutura de intenção</p>
               </div>
             </div>
@@ -228,7 +226,7 @@ function IntentSystemContent() {
                   setPhase('dimensions');
                   soundManager.playConfirm();
                 }}
-                className="w-full group relative px-8 py-5 text-white font-semibold rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400"
+                className="w-full group relative px-8 py-5 text-white font-semibold rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 bg-gradient-to-r from-blue-800 to-blue-600 hover:from-blue-700 hover:to-blue-500"
                 style={{
                   boxShadow: '0 8px 24px rgba(34, 211, 238, 0.25)',
                 }}
@@ -251,7 +249,7 @@ function IntentSystemContent() {
                 <Lock size={14} className="text-[#9CA3AF]" />
                 <p className="ios-caption text-[#4B5563]">Seus padrões permanecem privados</p>
               </div>
-              <p className="ios-caption text-[#9CA3AF]">NΞØ Protocol © 2025</p>
+              <p className="ios-caption text-[#9CA3AF]">NΞØ Protocol © {new Date().getFullYear()}</p>
             </div>
 
             <div className="h-4"></div>
@@ -287,9 +285,9 @@ function IntentSystemContent() {
               }}
             >
               <div className="text-center">
-                <h2 className="ios-headline text-[#111827] mb-3 text-3xl font-bold">Suas Dimensões</h2>
+                <h2 className="ios-headline text-[#111827] mb-3 text-3xl font-bold">Vamos mapear suas dimensões</h2>
                 <p className="ios-body text-[#4B5563] text-base">
-                  Selecione e preencha livremente. Explore todas ou apenas as que ressoam.
+                  Selecione e preencha livremente. Explore todas ou apenas as que ressoam na sua consciência.
                 </p>
               </div>
             </div>
@@ -313,12 +311,19 @@ function IntentSystemContent() {
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <div className="text-5xl mb-4 text-[#06B6D4] relative inline-block">
-                          <span>{dim.particle}</span>
+                        <div 
+                          className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 relative inline-flex"
+                          style={{
+                            background: '#0A1929',
+                            border: '1px solid #1E3A5F',
+                            boxShadow: '0 0 12px rgba(37, 99, 235, 0.4), inset 0 0 8px rgba(37, 99, 235, 0.2)',
+                          }}
+                        >
+                          <span className="text-xl text-[#60A5FA]">{particles.xi}</span>
                           <img 
                             src="/splash/box_intent.png" 
                             alt="NΞØ" 
-                            className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                            className="absolute inset-0 w-full h-full object-contain pointer-events-none opacity-60"
                           />
                         </div>
                         {!selectedDimensions.includes(dim.id) ? (

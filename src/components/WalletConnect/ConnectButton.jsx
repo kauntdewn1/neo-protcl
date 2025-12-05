@@ -1,13 +1,20 @@
-import { ConnectWallet, useAddress, useDisconnect } from "@thirdweb-dev/react";
-import { useEffect } from "react";
+// Comentado - wallet não está sendo usada
+// import { ConnectWallet, useAddress, useDisconnect } from "@thirdweb-dev/react";
+// import { useEffect } from "react";
 
 /**
  * Botão de conexão de wallet usando Thirdweb
  * O Thirdweb já inclui suporte para múltiplas wallets (MetaMask, WalletConnect, Coinbase, etc)
  * 
  * Fix para acessibilidade: Adiciona DialogTitle ao modal do ConnectWallet
+ * 
+ * COMENTADO - Wallet não está sendo usada no momento
  */
 export default function ConnectButton() {
+  // Componente desabilitado - wallet não está sendo usada
+  return null;
+
+  /* Código original comentado:
   const address = useAddress();
   const disconnect = useDisconnect();
 
@@ -134,4 +141,5 @@ export default function ConnectButton() {
       </div>
     </div>
   );
+  */
 }

@@ -10,25 +10,25 @@ export const dimensions = [
   {
     id: 'problem_solving',
     title: 'Resolução de Problemas',
-    subtitle: 'Como você navega o caos',
-    particle: particles.interference, // ⌁ - Interferência (representa resolução/caos)
-    prompt: 'O que acontece dentro de você nos primeiros momentos de um quebra-cabeça crítico?',
+    subtitle: '[ Como você navega no caos? ]',
+    particle: particles.null, 
+    prompt: 'O que acontece dentro de você nos primeiros momentos de uma situação crítica?',
     color: 'from-blue-600/20 to-cyan-600/10',
   },
   {
     id: 'collaboration',
     title: 'Conexão & Colaboração',
-    subtitle: 'Como você se vincula',
-    particle: particles.propagation, // ⟴ - Propagação (representa rede/conexão)
+    subtitle: '[ Como você se vincula? ]',
+    particle: particles.null, 
     prompt: 'Qual é seu papel natural em uma teia de trabalho compartilhado?',
     color: 'from-emerald-600/20 to-teal-600/10',
   },
   {
     id: 'creation',
     title: 'Criação & Geração',
-    subtitle: 'Como você manifesta',
-    particle: particles.event, // ✶ - Evento (representa criação/manifestação)
-    prompt: 'De onde vem o impulso criativo? Como ele cresce até se tornar real?',
+    subtitle: '[ Como você manifesta? ]',
+    particle: particles.null, 
+    prompt: 'De onde vem seus impulsos criativos? Como eles crescem até se tornarem reais?',
     color: 'from-purple-600/20 to-pink-600/10',
   },
 ];

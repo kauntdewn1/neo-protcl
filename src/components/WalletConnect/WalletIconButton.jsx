@@ -1,15 +1,21 @@
-import { useAddress, useDisconnect, useConnectionStatus } from "@thirdweb-dev/react";
-import { ConnectWallet } from "@thirdweb-dev/react";
-import { soundManager } from '../../utils/sounds';
+// Comentado - wallet não está sendo usada
+// import { useAddress, useDisconnect, useConnectionStatus } from "@thirdweb-dev/react";
+// import { ConnectWallet } from "@thirdweb-dev/react";
+// import { soundManager } from '../../utils/sounds';
 
 /**
  * Botão de wallet como ícone para o Navbar
+ * COMENTADO - Wallet não está sendo usada no momento
  */
 export default function WalletIconButton() {
-  const address = useAddress();
-  const disconnect = useDisconnect();
-  const connectionStatus = useConnectionStatus();
+  // const address = useAddress();
+  // const disconnect = useDisconnect();
+  // const connectionStatus = useConnectionStatus();
 
+  // Componente desabilitado - wallet não está sendo usada
+  return null;
+
+  /* Código original comentado:
   if (address) {
     return (
       <div className="relative group opacity-50 blur-[1px] pointer-events-none">
@@ -89,4 +95,5 @@ export default function WalletIconButton() {
       `}</style>
     </div>
   );
+  */
 }
